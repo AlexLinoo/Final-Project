@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom"
+import LoginPage from "../pages/LoginPage/LoginPage"
 import ProductDetailPage from "../pages/ProductDetailPage/ProductDetailPage"
 import ProductListPage from "../pages/ProductListPage/ProductListPage"
+import SignupPage from "../pages/SignUpPage/SignUpPage"
 
 
 
@@ -17,8 +19,8 @@ const AppRoutes = () => {
             <Route path="/centros" element={<p>Centros</p>} />
             <Route path="/perfil-centro" element={<p>Perfil de Asociación</p>} />
             <Route path="/usuarios" element={<p>Usuarios</p>} />
-            <Route path="/registro" element={<p>Regístrate</p>} />
-            <Route path="/iniciar-sesión" element={<p>Iniciar Sesión</p>} />
+            <Route path="/registro" element={<SignupPage />} />
+            <Route path="/iniciar-sesion" element={<LoginPage />} />
             <Route path="/*" element={<p>404</p>} />
         </Routes>
     )

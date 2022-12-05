@@ -14,7 +14,7 @@ class ProductService {
     }
 
     getProducts() {
-        return this.api.get('/products')
+        return this.api.get('/')
     }
 
 

@@ -23,6 +23,12 @@ const Navigation = () => {
                         <Link to="/usuarios">
                             <Nav.Link as="div">Usuarios</Nav.Link>
                         </Link>
+                        <Link to="/registro">
+                            <Nav.Link as="div">Registro</Nav.Link>
+                        </Link>
+                        <Link to="/iniciar-sesion">
+                            <Nav.Link as="div">Iniciar sesión</Nav.Link>
+                        </Link>
 
                         <Nav.Link as="div">¡Bienvenido!</Nav.Link>
 
