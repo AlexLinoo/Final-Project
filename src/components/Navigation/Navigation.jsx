@@ -29,6 +29,9 @@ const Navigation = () => {
                         <Link to="/iniciar-sesion">
                             <Nav.Link as="div">Iniciar sesión</Nav.Link>
                         </Link>
+                        <Link to="/crear-producto">
+                            <Nav.Link as="div">Dona un producto</Nav.Link>
+                        </Link>
 
                         <Nav.Link as="div">¡Bienvenido!</Nav.Link>
 
