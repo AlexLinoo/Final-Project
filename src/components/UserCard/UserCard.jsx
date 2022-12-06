@@ -4,11 +4,11 @@ import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
 
-const UserCard = ({ username, image, _id }) => {
+const UserCard = ({ username, profileImage, _id }) => {
     return (
         <div key={_id}>
             <Card className="mb-4 ProductCard">
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={profileImage} />
                 <Card.Body>
                     <Card.Title>{username}</Card.Title>
 

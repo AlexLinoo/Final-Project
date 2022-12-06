@@ -1,30 +1,52 @@
 import { useEffect, useState } from "react"
 import ProductList from "../../components/ProductList/ProductList"
 import productService from "../../services/Product.service"
-import { Container } from "react-bootstrap"
+import { Container, Modal, Button } from "react-bootstrap"
+import NewProductForm from './../../components/NewProductForm/NewProduct'
+
 
 const ProductListPage = () => {
 
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState()
+    const [showModal, setShowModal] = useState(false)
 
-    useEffect(() => {
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
 
+    const loadProducts = () => {
         productService
             .getProducts()
             .then(({ data }) => setProducts(data))
             .catch(err => console.log(err))
+    }
+
+
+    useEffect(() => {
+
+        loadProducts()
 
     }, [])
 
     return (
-        <Container>
-            <h1>Lista de productos</h1>
-            <hr />
+        <>
+            <Container>
+                <h1>Lista de productos</h1>
+                <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>
+                <hr />
 
-            {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
+                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
 
-        </Container>
+            </Container>
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <NewProductForm closeModal={closeModal} refreshList={loadProducts} />
+                </Modal.Body>
 
+            </Modal>
+        </>
     )
 }
 export default ProductListPage
