@@ -58,14 +58,10 @@ const NewProductForm = () => {
 
             </Row>
             <Row>
-                <Col>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Checkbox aria-label="Checkbox for following text input" name="state" /><h5>Nuevo</h5></InputGroup>
-                </Col>
-                <Col>
-                    <InputGroup className="mb-3">
-                        <InputGroup.Checkbox aria-label="Checkbox for following text input" name="state" /><h5>Semi-Nuevo</h5></InputGroup>
-                </Col>
+                <InputGroup className="mb-3" onChange={handleInputChange}>
+                    <InputGroup.Radio aria-label="Radio for following text input" name="state" value={state} /><h5>Nuevo</h5>
+                    <InputGroup.Radio aria-label="Radio for following text input" name="state" value={state} /><h5>Semi-Nuevo</h5>
+                </InputGroup>
             </Row>
             <Row>
                 <Form.Select className="mb-5" aria-label="Default select example" name="type">
