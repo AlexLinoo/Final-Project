@@ -2,6 +2,8 @@ import { useState } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
 import productService from "../../services/Product.service"
 import { useNavigate } from "react-router-dom"
+import uploadServices from "../../services/upload.service"
+
 
 const NewProductForm = () => {
 
@@ -19,10 +21,13 @@ const NewProductForm = () => {
     const handleInputChange = e => {
         const { name, value } = e.target
         setProductData({ ...productData, [name]: value })
+
     }
 
     const handleFromSubmit = e => {
         e.preventDefault()
+
+
 
         productService
 
@@ -30,7 +35,28 @@ const NewProductForm = () => {
             .then(() => navigate('/productos'))
             .catch(err => console.error(err))
     }
-    const { name, description, image, state, type } = productData
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setProductData({ ...productData, image: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+
+
+            .catch(err => console.log(err))
+
+    }
+    const [loadingImage, setLoadingImage] = useState(false)
+
+    const { name, description, image } = productData
 
 
 
@@ -51,31 +77,33 @@ const NewProductForm = () => {
                 <Col>
                     <Form.Group className="mb-3" controlId="image">
                         <Form.Label>Imagen (URL)</Form.Label>
-                        <Form.Control type="url" name="image" value={image} onChange={handleInputChange} />
+                        <Form.Control type="file" onChange={handleFileUpload} />
                     </Form.Group>
 
                 </Col>
 
             </Row>
             <Row>
-                <InputGroup className="mb-3" onChange={handleInputChange}>
-                    <InputGroup.Radio aria-label="Radio for following text input" name="state" value={state} /><h5>Nuevo</h5>
-                    <InputGroup.Radio aria-label="Radio for following text input" name="state" value={state} /><h5>Semi-Nuevo</h5>
-                </InputGroup>
+                <Col>
+                    <InputGroup className="mb-3" onChange={handleInputChange}>
+                        <InputGroup.Radio aria-label="Radio for following text input" name="state" value='Nuevo' /><h5>Nuevo</h5>
+                        <InputGroup.Radio aria-label="Radio for following text input" name="state" value='Semi-Nuevo' /><h5>Semi-Nuevo</h5>
+                    </InputGroup>
+                </Col>
             </Row>
             <Row>
-                <Form.Select className="mb-5" aria-label="Default select example" name="type">
+                <Form.Select className="mb-5" aria-label="Default select example" name="type" onChange={handleInputChange}>
                     <option>Tipo</option>
-                    <option value="clothes">Ropa</option>
-                    <option value="toys">Juguetes</option>
-                    <option value="school">Material Escolar</option>
-                    <option value="others">Otros</option>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Juguetes">Juguetes</option>
+                    <option value="Material Escolar">Material Escolar</option>
+                    <option value="Otros">Otros</option>
                 </Form.Select>
             </Row>
 
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Crear Producto</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Producto'}</Button>
             </div>
         </Form>
 
