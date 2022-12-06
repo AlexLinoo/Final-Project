@@ -16,6 +16,8 @@ const NewProductForm = () => {
 
     })
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
     const navigate = useNavigate()
 
     const handleInputChange = e => {
@@ -27,10 +29,7 @@ const NewProductForm = () => {
     const handleFromSubmit = e => {
         e.preventDefault()
 
-
-
         productService
-
             .saveProduct(productData)
             .then(() => navigate('/productos'))
             .catch(err => console.error(err))
@@ -49,16 +48,10 @@ const NewProductForm = () => {
                 setProductData({ ...productData, image: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
-
-
             .catch(err => console.log(err))
-
     }
-    const [loadingImage, setLoadingImage] = useState(false)
 
     const { name, description, image } = productData
-
-
 
     return (
 
