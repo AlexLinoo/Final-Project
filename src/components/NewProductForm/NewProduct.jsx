@@ -76,7 +76,7 @@ const NewProductForm = () => {
             <Row>
                 <Col>
                     <Form.Group className="mb-3" controlId="image">
-                        <Form.Label>Imagen (URL)</Form.Label>
+                        <Form.Label>Imagen del producto</Form.Label>
                         <Form.Control type="file" onChange={handleFileUpload} />
                     </Form.Group>
 
