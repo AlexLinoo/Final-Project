@@ -1,13 +1,13 @@
 import { Col, Row } from "react-bootstrap"
-import ProductCard from "../ProductCard/ProductCard"
+import UserCard from "../UserCard/UserCard"
 
-const ProductList = ({ products }) => {
+const UserList = ({ users }) => {
     return (
         <Row>
-            {products.map(elm => {
+            {users.map(elm => {
                 return (
                     <Col sm={{ span: 4 }} key={elm._id} >
-                        <ProductCard {...elm} />
+                        <UserCard {...elm} />
                     </Col>
                 )
             })}
@@ -15,4 +15,4 @@ const ProductList = ({ products }) => {
     )
 
 }
-export default ProductList
+export default UserList

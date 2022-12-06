@@ -5,14 +5,13 @@ import { Container } from "react-bootstrap"
 
 const ProductListPage = () => {
 
-    const [product, setProduct] = useState([])
+    const [products, setProducts] = useState([])
 
     useEffect(() => {
 
         productService
-
             .getProducts()
-            .then(({ data }) => setProduct(data))
+            .then(({ data }) => setProducts(data))
             .catch(err => console.log(err))
 
     }, [])
@@ -22,7 +21,7 @@ const ProductListPage = () => {
             <h1>Lista de productos</h1>
             <hr />
 
-            {!product ? <h1>Cargando productos</h1> : <ProductList product={product} />}
+            {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
 
         </Container>
 

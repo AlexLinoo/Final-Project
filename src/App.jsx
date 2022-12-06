@@ -1,3 +1,4 @@
+import { Container } from 'react-bootstrap';
 import './App.css'
 import Footer from './components/Footer/Footer';
 import Navigation from './components/Navigation/Navigation';
@@ -11,9 +12,9 @@ const App = () => {
 
             <Navigation />
 
-            <div className='container'>
+            <Container>
                 <AppRoutes />
-            </div>
+            </Container>
 
             <Footer />
         </div>

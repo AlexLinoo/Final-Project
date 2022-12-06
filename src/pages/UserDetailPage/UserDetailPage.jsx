@@ -1,4 +1,4 @@
-import productService from "../../services/Product.service"
+import userService from "../../services/user.service"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
@@ -6,41 +6,41 @@ import { Link } from "react-router-dom"
 
 
 
-const ProductDetailPage = () => {
+const UserDetailPage = () => {
 
-    const [product, setProduct] = useState({})
+    const [users, setUsers] = useState({})
 
-    const { product_id } = useParams()
+    const { user_id } = useParams()
 
     useEffect(() => {
-        productService
-            .getOneProduct(product_id)
-            .then(({ data }) => setProduct(data))
+        userService
+            .getOneUser(user_id)
+            .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))
     }, [])
 
-    const { name, description, image } = product
+    const { username, image } = users
 
     return (
         <Container>
             {
-                !product
+                !users
                     ?
                     <h1>CARGANDO</h1>
                     :
                     <>
-                        <h1 className="mb-4">Detalles de {name}</h1>
+                        <h1 className="mb-4">Peril de {username}</h1>
                         <hr />
 
                         <Row>
 
                             <Col md={{ span: 6, offset: 1 }}>
                                 <h3>Especificaciones</h3>
-                                <p>{description}</p>
+                                <p>DETALLES DEL USUARIO AQUI(productos)</p>
                                 <hr />
 
-                                <Link to="/productos">
-                                    <Button as="div" variant="dark">Volver a la lista </Button>
+                                <Link to="/">
+                                    <Button as="div" variant="dark">Volver Inicio</Button>
                                 </Link>
                             </Col>
 
@@ -54,4 +54,4 @@ const ProductDetailPage = () => {
         </Container>
     )
 }
-export default ProductDetailPage
+export default UserDetailPage
