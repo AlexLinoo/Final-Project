@@ -16,6 +16,7 @@ const SignupForm = () => {
         profileImage: ''
     })
     const [loadingImage, setLoadingImage] = useState(false)
+    const { username, password, email, profileImage } = signupData
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -29,7 +30,7 @@ const SignupForm = () => {
     const handleSubmit = e => {
 
         e.preventDefault()
-
+        console.log(signupData)
 
         authService
             .signup(signupData)

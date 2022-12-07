@@ -12,7 +12,7 @@ const NewProductForm = () => {
         description: '',
         image: '',
         state: '',
-        type: '',
+        type: ''
 
     })
 
