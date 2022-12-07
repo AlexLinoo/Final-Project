@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 import uploadServices from "../../services/upload.service"
 
 
-const NewProductForm = () => {
+const NewProductForm = ({ closeModal, refreshList }) => {
 
     const [productData, setProductData] = useState({
         name: '',
@@ -31,7 +31,11 @@ const NewProductForm = () => {
 
         productService
             .saveProduct(productData)
-            .then(() => navigate('/productos'))
+            .then(() => {
+                closeModal()
+                refreshList()
+                closeModal()
+            })
             .catch(err => console.error(err))
     }
 
@@ -51,7 +55,7 @@ const NewProductForm = () => {
             .catch(err => console.log(err))
     }
 
-    const { name, description, image } = productData
+    const { name, description } = productData
 
     return (
 
