@@ -14,7 +14,7 @@ const NewProductForm = ({ closeModal, refreshList }) => {
         description: '',
         image: '',
         state: '',
-        type: '',
+        type: ''
 
     })
 
