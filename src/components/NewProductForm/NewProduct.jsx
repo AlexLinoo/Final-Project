@@ -1,13 +1,13 @@
-import { useState, useContext } from "react"
+import { useState } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
-import { MessageContext } from "../../contexts/userMessage.context"
+
 import productService from "../../services/Product.service"
 import uploadServices from "../../services/upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 
-const NewProductForm = ({ closeModal, refreshList }) => {
+const NewProductForm = ({ fireFinalActions }) => {
 
     const [productData, setProductData] = useState({
         name: '',
@@ -29,19 +29,16 @@ const NewProductForm = ({ closeModal, refreshList }) => {
 
     }
 
-    const { setShowToast, setToastMessage } = useContext(MessageContext)
+
 
     const handleFromSubmit = e => {
         e.preventDefault()
-
+        console.log(productData)
         productService
 
             .saveProduct(productData)
             .then(() => {
-                setShowToast(true)
-                setToastMessage('Producto creado')
-                refreshList()
-                closeModal()
+                fireFinalActions()
             })
             .catch(err => setErrors(err.response.data.errorMessages))
     }

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import ProductList from "../../components/ProductList/ProductList"
 import productService from "../../services/Product.service"
 import { Container, Modal, Button } from "react-bootstrap"
 import NewProductForm from './../../components/NewProductForm/NewProduct'
+import { MessageContext } from "../../contexts/userMessage.context"
 
 
 const ProductListPage = () => {
@@ -13,6 +14,8 @@ const ProductListPage = () => {
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
+
     const loadProducts = () => {
         productService
             .getProducts()
@@ -20,7 +23,12 @@ const ProductListPage = () => {
             .catch(err => console.log(err))
     }
 
-
+    const fireFinalActions = () => {
+        setShowToast(true)
+        setToastMessage('Producto creado')
+        loadProducts()
+        closeModal()
+    }
     useEffect(() => {
 
         loadProducts()
@@ -42,7 +50,7 @@ const ProductListPage = () => {
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <NewProductForm closeModal={closeModal} refreshList={loadProducts} />
+                    <NewProductForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
 
             </Modal>

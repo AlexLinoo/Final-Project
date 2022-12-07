@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
 // import { MessageContext } from "../../contexts/userMessage.context"
 import authService from "../../services/auth.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 
@@ -14,6 +15,8 @@ const LoginForm = () => {
         email: '',
         password: '',
     })
+
+    const [errors, setErrors] = useState([])
 
     const handleInputChange = e => {
         const { value, name } = e.target
@@ -38,7 +41,9 @@ const LoginForm = () => {
                 // setToastMessage('Sesión iniciada')
                 navigate('/')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setErrors([err.response.data.message])
+            })
     }
 
 
@@ -56,6 +61,9 @@ const LoginForm = () => {
                 <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
             </Form.Group>
+
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm} style={{ color: 'red' }}>{elm}</p>)}</ErrorMessage> : undefined}
+
             <div className="d-grid">
                 <Button variant="dark" type="submit">Acceder</Button>
             </div>
