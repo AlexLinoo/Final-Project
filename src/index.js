@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { AuthProviderWrapper } from './contexts/auth.context';
+import { MessageProviderWrapper } from './contexts/userMessage.context';
 
 
 
@@ -12,9 +13,11 @@ root.render(
 
     <React.StrictMode>
         <AuthProviderWrapper>
-            <Router>
-                <App />
-            </Router>
+            <MessageProviderWrapper>
+                <Router>
+                    <App />
+                </Router>
+            </MessageProviderWrapper>
         </AuthProviderWrapper>
     </React.StrictMode>
 )

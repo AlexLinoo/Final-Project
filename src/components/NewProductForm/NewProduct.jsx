@@ -1,8 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
+import { MessageContext } from "../../contexts/userMessage.context"
 import productService from "../../services/Product.service"
-import { useNavigate } from "react-router-dom"
 import uploadServices from "../../services/upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
+
 
 
 const NewProductForm = ({ closeModal, refreshList }) => {
@@ -16,9 +18,10 @@ const NewProductForm = ({ closeModal, refreshList }) => {
 
     })
 
-    const [loadingImage, setLoadingImage] = useState(false)
 
-    const navigate = useNavigate()
+    const [loadingImage, setLoadingImage] = useState(false)
+    const [errors, setErrors] = useState([])
+
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -26,17 +29,21 @@ const NewProductForm = ({ closeModal, refreshList }) => {
 
     }
 
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
+
     const handleFromSubmit = e => {
         e.preventDefault()
 
         productService
+
             .saveProduct(productData)
             .then(() => {
-                closeModal()
+                setShowToast(true)
+                setToastMessage('Producto creado')
                 refreshList()
                 closeModal()
             })
-            .catch(err => console.error(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const handleFileUpload = e => {
@@ -44,11 +51,14 @@ const NewProductForm = ({ closeModal, refreshList }) => {
         setLoadingImage(true)
 
         const formData = new FormData()
+
         formData.append('imageData', e.target.files[0])
 
         uploadServices
+
             .uploadimage(formData)
             .then(res => {
+
                 setProductData({ ...productData, image: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
@@ -98,6 +108,7 @@ const NewProductForm = ({ closeModal, refreshList }) => {
                 </Form.Select>
             </Row>
 
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm} style={{ color: 'red' }}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Producto'}</Button>

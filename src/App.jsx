@@ -3,6 +3,7 @@ import './App.css'
 import Footer from './components/Footer/Footer';
 import Navigation from './components/Navigation/Navigation';
 import AppRoutes from './routes/AppRoutes';
+import UserMessage from './components/UserMessage/UserMessage';
 
 
 const App = () => {
@@ -14,7 +15,9 @@ const App = () => {
 
             <Container>
                 <AppRoutes />
+                <UserMessage />
             </Container>
+
 
             <Footer />
         </div>
