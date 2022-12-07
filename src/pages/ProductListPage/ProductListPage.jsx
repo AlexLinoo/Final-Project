@@ -5,7 +5,7 @@ import { Container, Modal, Button } from "react-bootstrap"
 import NewProductForm from './../../components/NewProductForm/NewProduct'
 import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
-import { useContext } from "react"
+
 
 
 const ProductListPage = () => {
