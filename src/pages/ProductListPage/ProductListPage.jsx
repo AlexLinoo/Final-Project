@@ -4,9 +4,13 @@ import productService from "../../services/Product.service"
 import { Container, Modal, Button } from "react-bootstrap"
 import NewProductForm from './../../components/NewProductForm/NewProduct'
 import { MessageContext } from "../../contexts/userMessage.context"
+import { AuthContext } from "../../contexts/auth.context"
+import { useContext } from "react"
 
 
 const ProductListPage = () => {
+
+    const { user } = useContext(AuthContext)
 
     const [products, setProducts] = useState()
     const [showModal, setShowModal] = useState(false)
@@ -39,12 +43,15 @@ const ProductListPage = () => {
         <>
             <Container>
                 <h1>Lista de productos</h1>
-                <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>
+
+                {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
+
                 <hr />
 
                 {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
 
             </Container>
+
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
