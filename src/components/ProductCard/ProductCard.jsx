@@ -2,15 +2,21 @@ import './ProductCard.css'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../contexts/auth.context'
+import { useContext } from 'react'
 
 
-const ProductCard = ({ name, image, description, _id, type, state }) => {
+
+const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
+    const { user } = useContext(AuthContext)
+
     return (
         <div key={_id}>
             <Card className="mb-4 ProductCard">
-                <Card.Img variant="top" src={image} />
+                <Card.Img variant="top" src={image} alt="producto" />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
+                    <Card.Text>Donado por : {owner}</Card.Text>
                     <Card.Text>Descripción: {description}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
