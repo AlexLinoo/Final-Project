@@ -2,6 +2,7 @@ import { Col, Row } from "react-bootstrap"
 import UserCard from "../UserCard/UserCard"
 
 const UserList = ({ users }) => {
+
     return (
         <Row>
             {users.map(elm => {
@@ -15,4 +16,5 @@ const UserList = ({ users }) => {
     )
 
 }
+
 export default UserList

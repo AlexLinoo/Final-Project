@@ -1,10 +1,7 @@
 import { useState } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
-
 import associationService from "../../services/Association.service"
 import uploadServices from "../../services/upload.service"
-import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
 
 
 const NewAssociationForm = ({ fireFinalActions }) => {
@@ -16,13 +13,10 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         address: '',
         needs: '',
         children: ''
-
     })
-
 
     const [loadingImage, setLoadingImage] = useState(false)
     const [errors, setErrors] = useState([])
-
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -30,11 +24,9 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 
     }
 
-
-
     const handleFromSubmit = e => {
         e.preventDefault()
-        console.log(associationData)
+
         associationService
 
             .saveAssociation(associationData)
@@ -56,7 +48,6 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 
             .uploadimage(formData)
             .then(res => {
-
                 setAssociationData({ ...associationData, image: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
@@ -103,16 +94,12 @@ const NewAssociationForm = ({ fireFinalActions }) => {
                 <Form.Control type="number" name="children" value={children} onChange={handleInputChange} />
             </Form.Group>
 
-
-            {/* {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm} style={{ color: 'red' }}>{elm}</p>)}</ErrorMessage> : undefined} */}
-
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Centro'}</Button>
             </div>
         </Form>
 
-
-
     )
 }
+
 export default NewAssociationForm

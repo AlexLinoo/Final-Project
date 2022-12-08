@@ -8,6 +8,7 @@ function MessageProviderWrapper(props) {
     const [toastMessage, setToastMessage] = useState('Mensaje de ejemplo')
 
     return (
+
         <MessageContext.Provider value={{ setShowToast, showToast, setToastMessage, toastMessage }}>
             {props.children}
         </MessageContext.Provider>

@@ -1,10 +1,8 @@
 import { useState } from "react"
 import { Form, Button, Row, Col, InputGroup } from "react-bootstrap"
-
 import productService from "../../services/Product.service"
 import uploadServices from "../../services/upload.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
 
 
 const NewProductForm = ({ fireFinalActions }) => {
@@ -15,21 +13,17 @@ const NewProductForm = ({ fireFinalActions }) => {
         image: '',
         state: '',
         type: ''
-
     })
 
 
     const [loadingImage, setLoadingImage] = useState(false)
     const [errors, setErrors] = useState([])
 
-
     const handleInputChange = e => {
         const { name, value } = e.target
         setProductData({ ...productData, [name]: value })
 
     }
-
-
 
     const handleFromSubmit = e => {
         e.preventDefault()
@@ -55,7 +49,6 @@ const NewProductForm = ({ fireFinalActions }) => {
 
             .uploadimage(formData)
             .then(res => {
-
                 setProductData({ ...productData, image: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
@@ -112,8 +105,7 @@ const NewProductForm = ({ fireFinalActions }) => {
             </div>
         </Form>
 
-
-
     )
 }
+
 export default NewProductForm

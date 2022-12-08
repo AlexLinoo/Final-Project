@@ -5,7 +5,6 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 
-
 const ProductDetailPage = () => {
 
     const [product, setProduct] = useState({})
@@ -13,7 +12,9 @@ const ProductDetailPage = () => {
     const { product_id } = useParams()
 
     useEffect(() => {
+
         productService
+
             .getOneProduct(product_id)
             .then(({ data }) => setProduct(data))
             .catch(err => console.log(err))
@@ -22,6 +23,7 @@ const ProductDetailPage = () => {
     const { name, description, image } = product
 
     return (
+
         <Container>
             {
                 !product
@@ -54,4 +56,5 @@ const ProductDetailPage = () => {
         </Container>
     )
 }
+
 export default ProductDetailPage

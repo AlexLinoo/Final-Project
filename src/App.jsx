@@ -9,6 +9,7 @@ import UserMessage from './components/UserMessage/UserMessage';
 const App = () => {
 
     return (
+
         <div className='App pb-5'>
 
             <Navigation />
@@ -18,9 +19,10 @@ const App = () => {
                 <UserMessage />
             </Container>
 
-
             <Footer />
+
         </div>
     );
 }
+
 export default App;

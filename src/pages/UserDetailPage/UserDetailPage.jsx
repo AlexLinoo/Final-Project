@@ -5,7 +5,6 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 
-
 const UserDetailPage = () => {
 
     const [users, setUsers] = useState({})
@@ -13,15 +12,20 @@ const UserDetailPage = () => {
     const { user_id } = useParams()
 
     useEffect(() => {
+
         userService
+
             .getOneUser(user_id)
             .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))
+
     }, [])
 
 
-    const { username, profileImage, _id } = users
+    const { username, profileImage } = users
+
     return (
+
         <Container>
             {
                 !users
@@ -50,7 +54,9 @@ const UserDetailPage = () => {
                         </Row>
                     </>
             }
+
         </Container>
     )
 }
+
 export default UserDetailPage

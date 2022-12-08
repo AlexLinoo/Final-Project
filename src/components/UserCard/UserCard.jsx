@@ -1,4 +1,3 @@
-
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
@@ -11,7 +10,6 @@ const UserCard = ({ username, profileImage, _id }) => {
 
     const deleteUser = () => {
 
-
         userService
 
             .deleteOneUser(_id)
@@ -20,6 +18,7 @@ const UserCard = ({ username, profileImage, _id }) => {
     }
 
     return (
+
         <div key={_id}>
             <Card className="mb-4 ProductCard">
                 <Card.Img variant="top" src={profileImage} />
@@ -39,4 +38,5 @@ const UserCard = ({ username, profileImage, _id }) => {
         </div>
     )
 }
+
 export default UserCard

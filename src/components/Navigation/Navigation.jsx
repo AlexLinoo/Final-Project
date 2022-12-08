@@ -6,11 +6,12 @@ import { AuthContext } from '../../contexts/auth.context'
 import { useContext } from 'react'
 
 
-
 const Navigation = () => {
 
     const { user, logoutUser } = useContext(AuthContext)
+
     return (
+
         <Navbar bg="dark" expand="md" variant="dark" className="mb-5">
             <Container>
                 <Link to="/">
@@ -28,20 +29,22 @@ const Navigation = () => {
 
                         {user ?
                             <>
+
                                 <Nav.Link as="div" onClick={logoutUser}>Cerrar sesión</Nav.Link>
                                 <Link to="/usuarios">
                                     <Nav.Link as="div">Usuarios</Nav.Link>
                                 </Link>
+
                             </>
                             :
                             <>
+
                                 <Link to="/registro">
                                     <Nav.Link as="div">Registro</Nav.Link>
                                 </Link>
                                 <Link to="/iniciar-sesion">
                                     <Nav.Link as="div">Iniciar Sesión</Nav.Link>
                                 </Link>
-
 
                             </>
                         }

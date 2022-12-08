@@ -11,7 +11,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
 
     const deleteProduct = () => {
 
-
         productService
 
             .deleteProduct(_id)
@@ -20,6 +19,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
     }
 
     return (
+
         <div key={_id}>
             <Card className="mb-4 ProductCard">
                 <Card.Img variant="top" src={image} alt="producto" />
@@ -42,4 +42,5 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
         </div>
     )
 }
+
 export default ProductCard

@@ -7,7 +7,6 @@ import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
 
 
-
 const AssociationListPage = () => {
 
     const { user } = useContext(AuthContext)
@@ -21,18 +20,22 @@ const AssociationListPage = () => {
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const loadAssociations = () => {
+
         associationService
+
             .getAssociatons()
             .then(({ data }) => setAssociations(data))
             .catch(err => console.log(err))
     }
 
     const fireFinalActions = () => {
+
         setShowToast(true)
         setToastMessage('Centro creado')
         loadAssociations()
         closeModal()
     }
+
     useEffect(() => {
 
         loadAssociations()
@@ -40,6 +43,7 @@ const AssociationListPage = () => {
     }, [])
 
     return (
+
         <>
             <Container>
                 <h1>Lista de Asociaciones</h1>
@@ -64,4 +68,5 @@ const AssociationListPage = () => {
         </>
     )
 }
+
 export default AssociationListPage

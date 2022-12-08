@@ -5,7 +5,6 @@ import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 
-
 const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState({})
@@ -13,7 +12,9 @@ const AssociationDetailPage = () => {
     const { association_id } = useParams()
 
     useEffect(() => {
+
         associationService
+
             .getOneAssociation(association_id)
             .then(({ data }) => setAssociation(data))
             .catch(err => console.log(err))
@@ -22,6 +23,7 @@ const AssociationDetailPage = () => {
     const { name, description, image, address } = association
 
     return (
+
         <Container>
             {
                 !association
@@ -54,4 +56,5 @@ const AssociationDetailPage = () => {
         </Container>
     )
 }
+
 export default AssociationDetailPage
