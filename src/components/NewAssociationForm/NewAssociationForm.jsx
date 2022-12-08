@@ -28,7 +28,6 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         associationService
-
             .saveAssociation(associationData)
             .then(() => {
                 fireFinalActions()

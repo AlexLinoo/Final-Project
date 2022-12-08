@@ -20,16 +20,13 @@ const AssociationListPage = () => {
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const loadAssociations = () => {
-
         associationService
-
             .getAssociatons()
             .then(({ data }) => setAssociations(data))
             .catch(err => console.log(err))
     }
 
     const fireFinalActions = () => {
-
         setShowToast(true)
         setToastMessage('Centro creado')
         loadAssociations()
@@ -37,9 +34,7 @@ const AssociationListPage = () => {
     }
 
     useEffect(() => {
-
         loadAssociations()
-
     }, [])
 
     return (
@@ -53,7 +48,6 @@ const AssociationListPage = () => {
                 <hr />
 
                 {!associations ? <h1>Cargando Centros</h1> : <AssociationList associations={associations} />}
-
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>
@@ -63,7 +57,6 @@ const AssociationListPage = () => {
                 <Modal.Body>
                     <NewAssociationForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
-
             </Modal>
         </>
     )

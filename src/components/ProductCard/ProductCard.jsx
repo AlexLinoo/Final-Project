@@ -10,9 +10,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
     const navigate = useNavigate()
 
     const deleteProduct = () => {
-
         productService
-
             .deleteProduct(_id)
             .then(() => navigate("/productos"))
             .catch(err => (err))

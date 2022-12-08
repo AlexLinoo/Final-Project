@@ -46,7 +46,6 @@ const NewProductForm = ({ fireFinalActions }) => {
         formData.append('imageData', e.target.files[0])
 
         uploadServices
-
             .uploadimage(formData)
             .then(res => {
                 setProductData({ ...productData, image: res.data.cloudinary_url })
