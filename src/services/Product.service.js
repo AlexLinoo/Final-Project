@@ -28,9 +28,16 @@ class ProductService {
         return this.api.get('/')
     }
 
-
     saveProduct(productData) {
         return this.api.post('/uploadProduct', productData)
+    }
+
+    deleteProduct(product_id) {
+        return this.api.delete(`/deleteProduct/${product_id}`)
+    }
+
+    editProduct(product_id) {
+        return this.api.put(`/editProduct/${product_id}`)
     }
 }
 

@@ -35,7 +35,7 @@ const ProductDetailPage = () => {
                         <Row>
 
                             <Col md={{ span: 6, offset: 1 }}>
-                                <h3>Especificaciones</h3>
+                                <h3>Donado por: </h3>
                                 <p>{description}</p>
                                 <hr />
 
