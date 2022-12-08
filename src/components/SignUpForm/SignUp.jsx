@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
-/* import { MessageContext } from './../../contexts/userMessage.context' */
+
 
 
 const SignupForm = () => {
@@ -25,15 +25,13 @@ const SignupForm = () => {
         const { value, name } = e.target
         setSignupData({ ...signupData, [name]: value })
     }
-    /* 
-        const { setShowToast, setToastMessage } = useContext(MessageContext) */
+
 
     const navigate = useNavigate()
 
     const handleSubmit = e => {
 
         e.preventDefault()
-        console.log(signupData)
 
         authService
             .signup(signupData)

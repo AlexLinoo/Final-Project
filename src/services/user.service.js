@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 class UserService {
 
     constructor() {
@@ -25,6 +26,14 @@ class UserService {
 
     getUsers() {
         return this.api.get('/')
+    }
+
+    deleteOneUser(user_id) {
+        return this.api.delete(`/deleteUser/${user_id}`)
+    }
+
+    editOneUser(user_id) {
+        return this.api.put(`/editUser/${user_id}`)
     }
 
 }

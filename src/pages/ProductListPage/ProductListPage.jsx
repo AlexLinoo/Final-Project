@@ -24,6 +24,7 @@ const ProductListPage = () => {
         productService
             .getProducts()
             .then(({ data }) => setProducts(data))
+
             .catch(err => console.log(err))
     }
 

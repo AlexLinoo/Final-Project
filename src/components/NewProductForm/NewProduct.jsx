@@ -33,7 +33,7 @@ const NewProductForm = ({ fireFinalActions }) => {
 
     const handleFromSubmit = e => {
         e.preventDefault()
-        console.log(productData)
+
         productService
 
             .saveProduct(productData)

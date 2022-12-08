@@ -19,8 +19,8 @@ const UserDetailPage = () => {
             .catch(err => console.log(err))
     }, [])
 
-    const { username, image } = users
 
+    const { username, profileImage, _id } = users
     return (
         <Container>
             {
@@ -35,7 +35,6 @@ const UserDetailPage = () => {
                         <Row>
 
                             <Col md={{ span: 6, offset: 1 }}>
-                                <h3>Especificaciones</h3>
                                 <p>DETALLES DEL USUARIO AQUI(productos)</p>
                                 <hr />
 
@@ -45,7 +44,7 @@ const UserDetailPage = () => {
                             </Col>
 
                             <Col md={{ span: 4 }}>
-                                <img src={image} style={{ width: '100%' }} />
+                                <img src={profileImage} style={{ width: '100%' }} />
                             </Col>
 
                         </Row>
