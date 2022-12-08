@@ -4,13 +4,14 @@ import userService from "../../services/user.service"
 import UserList from "../../components/UserList/UserList"
 
 
-
 const UserListPage = () => {
+
     const [users, setUsers] = useState([])
 
     useEffect(() => {
 
         userService
+
             .getUsers()
             .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))
@@ -19,6 +20,7 @@ const UserListPage = () => {
 
 
     return (
+
         <Container>
 
             <h1>Lista de Usuarios</h1>
@@ -29,4 +31,5 @@ const UserListPage = () => {
         </Container>
     )
 }
+
 export default UserListPage

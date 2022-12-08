@@ -2,11 +2,8 @@ import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
 import { AuthContext } from "../../contexts/auth.context"
-// import { MessageContext } from "../../contexts/userMessage.context"
 import authService from "../../services/auth.service"
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
-
-
 
 
 const LoginForm = () => {
@@ -25,7 +22,6 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
     const { storeToken, authenticateUser } = useContext(AuthContext)
-    // const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const handleSubmit = e => {
 
@@ -37,15 +33,12 @@ const LoginForm = () => {
                 const tokenFromServer = data.authToken
                 storeToken(tokenFromServer)
                 authenticateUser()
-                // setShowToast(true)
-                // setToastMessage('Sesión iniciada')
                 navigate('/')
             })
             .catch(err => {
                 setErrors([err.response.data.message])
             })
     }
-
 
     const { password, email } = signupData
 

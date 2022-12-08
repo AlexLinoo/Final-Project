@@ -1,7 +1,9 @@
 import { Col, Row } from "react-bootstrap"
 import ProductCard from "../ProductCard/ProductCard"
 
+
 const ProductList = ({ products }) => {
+
     return (
         <Row>
             {products.map(elm => {
@@ -15,4 +17,5 @@ const ProductList = ({ products }) => {
     )
 
 }
+
 export default ProductList

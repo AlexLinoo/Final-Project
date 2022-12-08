@@ -7,7 +7,6 @@ import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
 
 
-
 const ProductListPage = () => {
 
     const { user } = useContext(AuthContext)
@@ -21,19 +20,23 @@ const ProductListPage = () => {
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const loadProducts = () => {
+
         productService
+
             .getProducts()
             .then(({ data }) => setProducts(data))
-
             .catch(err => console.log(err))
     }
 
     const fireFinalActions = () => {
+
         setShowToast(true)
         setToastMessage('Producto creado')
         loadProducts()
         closeModal()
+
     }
+
     useEffect(() => {
 
         loadProducts()
@@ -41,6 +44,7 @@ const ProductListPage = () => {
     }, [])
 
     return (
+
         <>
             <Container>
                 <h1>Lista de productos</h1>
@@ -65,4 +69,5 @@ const ProductListPage = () => {
         </>
     )
 }
+
 export default ProductListPage

@@ -6,9 +6,6 @@ import { useNavigate } from 'react-router-dom'
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
-
-
-
 const SignupForm = () => {
 
     const [signupData, setSignupData] = useState({
@@ -17,15 +14,17 @@ const SignupForm = () => {
         password: '',
         profileImage: ''
     })
+
     const [loadingImage, setLoadingImage] = useState(false)
     const [errors, setErrors] = useState([])
     const { username, password, email, profileImage } = signupData
 
     const handleInputChange = e => {
+
         const { value, name } = e.target
         setSignupData({ ...signupData, [name]: value })
-    }
 
+    }
 
     const navigate = useNavigate()
 
@@ -34,6 +33,7 @@ const SignupForm = () => {
         e.preventDefault()
 
         authService
+
             .signup(signupData)
             .then(res => {
                 navigate('/')
@@ -52,19 +52,15 @@ const SignupForm = () => {
         formData.append('imageData', e.target.files[0])
 
         uploadServices
+
             .uploadimage(formData)
             .then(res => {
                 setSignupData({ ...signupData, profileImage: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
-
-
             .catch(err => console.log(err))
 
     }
-
-
-
 
     return (
 

@@ -14,8 +14,11 @@ function AuthProviderWrapper(props) {
     const authenticateUser = () => {
 
         const token = localStorage.getItem("authToken")
+
         if (token) {
+
             authService
+
                 .verify(token)
                 .then(({ data }) => setUser(data))
                 .catch(err => console.error(err))
@@ -25,6 +28,7 @@ function AuthProviderWrapper(props) {
     }
 
     const logoutUser = () => {
+
         setUser(null)
         localStorage.removeItem('authToken')
     }
@@ -35,6 +39,7 @@ function AuthProviderWrapper(props) {
 
 
     return (
+
         <AuthContext.Provider value={{ storeToken, authenticateUser, user, logoutUser }}>
             {props.children}
         </AuthContext.Provider>

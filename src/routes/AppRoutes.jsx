@@ -12,25 +12,31 @@ import AssociationListPage from "../pages/AssociationListPage/AssociationListPag
 import AssociationDetailPage from "../pages/AssociationDetailPage/AssociationDetailPage"
 
 
-
 const AppRoutes = () => {
+
     return (
+
         <Routes>
+
             <Route path="/" element={<p>INICIO</p>} />
             <Route path="/productos/detalles/:product_id" element={<ProductDetailPage />} />
             <Route path="/productos" element={<ProductListPage />} />
             <Route path="/centros" element={<AssociationListPage />} />
             <Route path="/centros/detalles/:association_id" element={<AssociationDetailPage />} />
+            <Route path="/crear-centro" element={<NewAssociationPage />} />
+            <Route path="/perfil-centro" element={<p>Perfil de Asociación</p>} />
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/iniciar-sesion" element={<LoginPage />} />
+
             < Route element={< PrivateRoute />}>
                 <Route path="/crear-producto" element={<NewProductPage />} />
-                <Route path="/crear-centro" element={<NewAssociationPage />} />
-                <Route path="/usuarios" element={<UserListPage />} />
                 <Route path="/usuarios/perfil/:user_id" element={<UserDetailPage />} />
+                <Route path="/usuarios" element={<UserListPage />} />
                 <Route path="/mi-perfil" element={<p>Mi perfil</p>} />
             </Route >
+
             <Route path="/*" element={<p>404</p>} />
+
         </Routes>
     )
 }

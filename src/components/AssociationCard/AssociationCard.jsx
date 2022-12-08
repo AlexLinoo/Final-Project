@@ -2,8 +2,8 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link } from 'react-router-dom'
 
-
 const AssociationCard = ({ name, image, _id }) => {
+
     return (
         <div key={_id}>
             <Card className="mb-4 ProductCard">

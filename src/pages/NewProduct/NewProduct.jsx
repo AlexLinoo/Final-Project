@@ -1,8 +1,11 @@
 import { Container } from "react-bootstrap"
 import NewProductForm from "../../components/NewProductForm/NewProduct"
 
+
 const NewProductPage = () => {
+
     return (
+
         <Container>
             <h1>New Product</h1>
             <NewProductForm />
@@ -10,4 +13,5 @@ const NewProductPage = () => {
 
     )
 }
+
 export default NewProductPage
