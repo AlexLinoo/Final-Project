@@ -22,6 +22,9 @@ const Navigation = () => {
                         <Link to="/productos">
                             <Nav.Link as="div">Productos</Nav.Link>
                         </Link>
+                        <Link to="/centros">
+                            <Nav.Link as="div">Asociaciones</Nav.Link>
+                        </Link>
 
                         {user ?
                             <>
