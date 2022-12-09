@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import { FavoriteButton } from "../../components/favorite/favorite"
 
 
 const ProductDetailPage = () => {
@@ -44,6 +45,7 @@ const ProductDetailPage = () => {
                                 <Link to="/productos">
                                     <Button as="div" variant="dark">Volver a la lista </Button>
                                 </Link>
+
                             </Col>
 
                             <Col md={{ span: 4 }}>
