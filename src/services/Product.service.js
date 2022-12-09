@@ -47,6 +47,14 @@ class ProductService {
     getProductType() {
         return this.api.get(`/getProductType`)
     }
+
+    getProductFav(product_id) {
+        return this.api.post(`/favProduct/${product_id}`)
+    }
+
+    quitProductFav(product_id) {
+        return this.api.post(`/noFavProduct/${product_id}`)
+    }
 }
 
 const productService = new ProductService()
