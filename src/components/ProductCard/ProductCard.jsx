@@ -35,7 +35,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
     }
 
     const deleteProduct = () => {
-
         productService
             .deleteProduct(_id)
             .then(() => navigate("/productos"))

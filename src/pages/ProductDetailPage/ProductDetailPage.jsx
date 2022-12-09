@@ -12,13 +12,15 @@ const ProductDetailPage = () => {
 
     const { product_id } = useParams()
 
-    useEffect(() => {
-
+    const loadProduct = () => {
         productService
-
             .getOneProduct(product_id)
             .then(({ data }) => setProduct(data))
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        loadProduct()
     }, [])
 
     const { name, description, image } = product

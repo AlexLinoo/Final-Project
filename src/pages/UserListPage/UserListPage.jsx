@@ -11,7 +11,6 @@ const UserListPage = () => {
     useEffect(() => {
 
         userService
-
             .getUsers()
             .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))

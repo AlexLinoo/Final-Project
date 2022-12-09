@@ -64,7 +64,6 @@ const ProductListPage = () => {
                 <Modal.Body>
                     <NewProductForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
-
             </Modal>
         </>
     )

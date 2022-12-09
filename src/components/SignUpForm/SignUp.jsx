@@ -39,8 +39,8 @@ const SignupForm = () => {
                 navigate('/')
             })
             .catch(err => {
-                console.log(err)
-                setErrors([err.response.data.message])
+                console.log(err.response.data)
+                setErrors(err.response.data.errorMessages)
             })
     }
 

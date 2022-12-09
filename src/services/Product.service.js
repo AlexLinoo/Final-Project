@@ -39,6 +39,10 @@ class ProductService {
     editProduct(productData, product_id) {
         return this.api.put(`/editProduct/${productData._id}`, productData)
     }
+
+    getUserProducts() {
+        return this.api.get(`/getUserProducts`)
+    }
 }
 
 const productService = new ProductService()

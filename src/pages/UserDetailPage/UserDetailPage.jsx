@@ -14,7 +14,6 @@ const UserDetailPage = () => {
     useEffect(() => {
 
         userService
-
             .getOneUser(user_id)
             .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))

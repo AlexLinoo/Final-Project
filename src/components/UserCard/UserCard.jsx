@@ -9,9 +9,7 @@ const UserCard = ({ username, profileImage, _id }) => {
     const navigate = useNavigate()
 
     const deleteUser = () => {
-
         userService
-
             .deleteOneUser(_id)
             .then(() => navigate("/usuarios"))
             .catch(err => (err))
