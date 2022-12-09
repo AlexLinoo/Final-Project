@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import productService from '../../services/Product.service'
 import { Modal } from 'react-bootstrap'
 import EditProductForm from '../EditProductForm/EditProductForm'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 
 
@@ -23,10 +23,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
         refreshProducts()
         closeModal()
     }
-
-    const navigate = useNavigate()
-
-
 
     const deleteProduct = () => {
         productService

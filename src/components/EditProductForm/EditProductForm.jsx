@@ -7,7 +7,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const EditProductForm = (props) => {
-    console.log(props)
+
     const { fireFinalActions, product } = props
 
     const [productData, setProductData] = useState({
