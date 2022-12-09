@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoutes"
 import NewAssociationPage from "../pages/NewAssociationPage/NewAssociationPage"
 import AssociationListPage from "../pages/AssociationListPage/AssociationListPage"
 import AssociationDetailPage from "../pages/AssociationDetailPage/AssociationDetailPage"
+import ProfilePage from "../pages/ProfilePage/ProfilePage"
 
 
 const AppRoutes = () => {
@@ -26,7 +27,9 @@ const AppRoutes = () => {
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/iniciar-sesion" element={<LoginPage />} />
 
+
             < Route element={< PrivateRoute />}>
+                <Route path="/usuarios/mi-perfil" element={<ProfilePage />} />
                 <Route path="/usuarios/perfil/:user_id" element={<UserDetailPage />} />
                 <Route path="/usuarios" element={<UserListPage />} />
             </Route >
