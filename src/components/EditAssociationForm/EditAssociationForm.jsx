@@ -1,19 +1,21 @@
-import { useState } from "react"
-import { Form, Button, Row, Col, InputGroup, FormLabel } from "react-bootstrap"
 import associationService from "../../services/Association.service"
+import { useState } from "react"
+import { Form, Button, Row, Col, FormLabel } from "react-bootstrap"
 import uploadServices from "../../services/upload.service"
+const EditAssociationForm = ({ fireFinalActions, association }) => {
 
-
-const NewAssociationForm = ({ fireFinalActions }) => {
 
     const [associationData, setAssociationData] = useState({
-        name: '',
-        description: '',
-        image: '',
-        address: '',
-        needs: '',
-        children: ''
+
+        name: association.name,
+        description: association.description,
+        address: association.address,
+        image: association.image,
+        state: association.state,
+        type: association.type,
+
     })
+
 
     const [loadingImage, setLoadingImage] = useState(false)
     const [errors, setErrors] = useState([])
@@ -28,11 +30,11 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         associationService
-            .saveAssociation(associationData)
+            .editAssociation(associationData, association._id)
             .then(() => {
                 fireFinalActions()
             })
-            .catch(err => setErrors(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const handleFileUpload = e => {
@@ -53,10 +55,11 @@ const NewAssociationForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
-    const { name, description, children, address, } = associationData
+    const { name, description, address, children, needs } = associationData
+
+
 
     return (
-
         <Form onSubmit={handleFromSubmit}>
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Nombre</Form.Label>
@@ -100,8 +103,6 @@ const NewAssociationForm = ({ fireFinalActions }) => {
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Centro'}</Button>
             </div>
         </Form>
-
     )
 }
-
-export default NewAssociationForm
+export default EditAssociationForm

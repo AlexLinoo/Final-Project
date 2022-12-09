@@ -37,6 +37,8 @@ const AssociationListPage = () => {
         loadAssociations()
     }, [])
 
+
+
     return (
 
         <>
@@ -47,7 +49,7 @@ const AssociationListPage = () => {
 
                 <hr />
 
-                {!associations ? <h1>Cargando Centros</h1> : <AssociationList associations={associations} />}
+                {!associations ? <h1>Cargando Centros</h1> : <AssociationList associations={associations} refreshAssociations={loadAssociations} />}
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>

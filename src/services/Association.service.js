@@ -38,6 +38,10 @@ class AssociationService {
         return this.api.delete(`/deleteAssociation/${association_id}`)
     }
 
+    editAssociation(associationData, association_id) {
+        return this.api.put(`/editAssociation/${association_id}`, associationData)
+    }
+
 }
 
 const associationService = new AssociationService()

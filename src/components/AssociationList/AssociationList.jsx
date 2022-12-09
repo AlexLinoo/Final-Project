@@ -1,14 +1,14 @@
 import { Col, Row } from "react-bootstrap"
 import AssociationCard from "../AssociationCard/AssociationCard"
 
-const AssociationList = ({ associations }) => {
+const AssociationList = ({ associations, refreshAssociations }) => {
 
     return (
         <Row>
             {associations.map(elm => {
                 return (
                     <Col sm={{ span: 4 }} key={elm._id} >
-                        <AssociationCard {...elm} />
+                        <AssociationCard {...elm} refreshAssociations={refreshAssociations} />
                     </Col>
                 )
             })}
