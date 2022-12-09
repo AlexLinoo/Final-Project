@@ -10,10 +10,9 @@ import { AuthContext } from '../../contexts/auth.context'
 
 
 
-const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
+const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
 
     const { user } = useContext(AuthContext)
-    const [products, setProducts] = useState()
 
     const [showModal, setShowModal] = useState(false)
 
@@ -21,23 +20,18 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
     const closeModal = () => setShowModal(false)
 
     const fireFinalActions = () => {
-        loadProducts()
+        refreshProducts()
         closeModal()
     }
 
     const navigate = useNavigate()
 
-    const loadProducts = () => {
-        productService
-            .getProducts()
-            .then(({ data }) => setProducts(data))
-            .catch(err => console.log(err))
-    }
+
 
     const deleteProduct = () => {
         productService
             .deleteProduct(_id)
-            .then(() => navigate("/productos"))
+            .then(() => fireFinalActions())
             .catch(err => (err))
     }
 
@@ -48,7 +42,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
                 <Card.Img variant="top" src={image} alt="producto" />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
-                    <Card.Text>Donado por : {owner.username}</Card.Text>
+                    <Card.Text>Donado por : {owner?.username}</Card.Text>
                     <Card.Text>Descripción: {description}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
@@ -56,11 +50,17 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
                         <div className="d-grid">
                             <Button variant="dark" size="sm">Ver detalles</Button>
                         </div>
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
-                        </div>
                     </Link>
-                    {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+                    {
+                        owner?._id === user?._id &&
+
+                        <>
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
+                            </div>
+                            {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+                        </>
+                    }
                 </Card.Body>
             </Card>
             <Modal show={showModal} onHide={closeModal}>

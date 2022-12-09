@@ -50,7 +50,7 @@ const ProfilePage = () => {
                 </Card.Body>
             </Card>
             <div className="mt-5">
-                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
+                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadUserProducts} />}
             </div>
         </>
     )

@@ -33,6 +33,11 @@ class AssociationService {
     saveAssociation(associationData) {
         return this.api.post('/uploadAssociation', associationData)
     }
+
+    deleteAssociation(association_id) {
+        return this.api.delete(`/deleteAssociation/${association_id}`)
+    }
+
 }
 
 const associationService = new AssociationService()
