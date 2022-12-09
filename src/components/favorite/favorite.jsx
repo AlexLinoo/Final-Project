@@ -68,9 +68,7 @@ function Favorite({ props }) {
                         return (
                             <div key={product.id} className="recipe__card">
                                 <img src={product.image} alt="foods" width={50} height={50} />
-                                <h2 className="recipe__card__title">{product.title}</h2>
-                                <h4 className="recipe__card__info">
-                                </h4>
+                                <h2 >{product.title}</h2>
                                 <button onClick={() => removeFavorite(product.id)}>
                                     remove favorite
                                 </button>

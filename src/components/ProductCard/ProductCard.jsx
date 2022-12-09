@@ -48,7 +48,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner }) => {
                 <Card.Img variant="top" src={image} alt="producto" />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
-                    <Card.Text>Donado por : {owner.username}</Card.Text>
+                    <Card.Text>Donado por : {owner?.username}</Card.Text>
                     <Card.Text>Descripción: {description}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
