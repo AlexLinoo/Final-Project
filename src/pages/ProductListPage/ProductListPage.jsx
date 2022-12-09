@@ -53,7 +53,7 @@ const ProductListPage = () => {
 
                 <hr />
 
-                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} />}
+                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadProducts} />}
 
             </Container>
 

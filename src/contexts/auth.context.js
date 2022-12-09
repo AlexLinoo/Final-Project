@@ -14,6 +14,8 @@ function AuthProviderWrapper(props) {
 
     const authenticateUser = () => {
 
+        setIsLoading(true)
+
         const token = localStorage.getItem("authToken")
 
         authService

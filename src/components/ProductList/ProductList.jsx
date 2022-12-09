@@ -2,14 +2,14 @@ import { Col, Row } from "react-bootstrap"
 import ProductCard from "../ProductCard/ProductCard"
 
 
-const ProductList = ({ products }) => {
+const ProductList = ({ products, refreshProducts }) => {
 
     return (
         <Row>
             {products.map(elm => {
                 return (
                     <Col sm={{ span: 4 }} key={elm._id} >
-                        <ProductCard {...elm} />
+                        <ProductCard {...elm} refreshProducts={refreshProducts} />
                     </Col>
                 )
             })}

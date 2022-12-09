@@ -8,11 +8,13 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const EditProductForm = (props) => {
     console.log(props)
-    const { fireFinalActions } = props
+    const { fireFinalActions, product } = props
+
     const [productData, setProductData] = useState({
-        name: '',
-        description: '',
-        image: '',
+
+        name: product.name,
+        description: product.description,
+        image: product.image,
         state: '',
         type: '',
 
@@ -32,7 +34,7 @@ const EditProductForm = (props) => {
         e.preventDefault()
 
         productService
-            .editProduct(productData)
+            .editProduct(productData, product._id)
             .then(() => {
                 fireFinalActions()
             })
