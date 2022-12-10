@@ -30,10 +30,10 @@ const Navigation = () => {
                         {user ?
                             <>
 
-                                <Nav.Link as="div" onClick={logoutUser}>Cerrar sesión</Nav.Link>
                                 <Link to="/usuarios">
                                     <Nav.Link as="div">Usuarios</Nav.Link>
                                 </Link>
+                                <Nav.Link as="div" className='logout' onClick={logoutUser}>Cerrar sesión</Nav.Link>
 
                             </>
                             :
@@ -49,7 +49,7 @@ const Navigation = () => {
                             </>
                         }
 
-                        {user && <Nav.Link as="div">¡Bienvenido {user.username}!</Nav.Link>}
+                        {user && <Link to="/usuarios/mi-perfil"><Nav.Link className="welcome" as="div">¡Bienvenido {user.username}!</Nav.Link></Link>}
 
                     </Nav>
                 </Navbar.Collapse>

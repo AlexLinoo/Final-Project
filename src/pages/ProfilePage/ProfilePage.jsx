@@ -35,7 +35,7 @@ const ProfilePage = () => {
     return (
         <>
             <h1>Tu Perfil</h1>
-
+            <hr />
             <Card style={{ width: '18rem' }}>
                 <Card.Img variant="top" src={profileImage} />
                 <Card.Body>
@@ -50,6 +50,8 @@ const ProfilePage = () => {
                 </Card.Body>
             </Card>
             <div className="mt-5">
+                <h2>Tus Productos</h2>
+                <hr />
                 {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadUserProducts} />}
             </div>
         </>
