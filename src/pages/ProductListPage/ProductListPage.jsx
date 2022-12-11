@@ -39,6 +39,8 @@ const ProductListPage = () => {
 
     }
     const handleFilterButton = (e) => {
+        // console.log(e.target.value)
+
         let productCopy = []
 
         if (e.target.value === 'all') {
@@ -82,7 +84,7 @@ const ProductListPage = () => {
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Dona un producto</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewProductForm fireFinalActions={fireFinalActions} />

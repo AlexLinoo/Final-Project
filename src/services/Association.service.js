@@ -42,6 +42,10 @@ class AssociationService {
         return this.api.put(`/editAssociation/${association_id}`, associationData)
     }
 
+    getUserAssociation() {
+        return this.api.get(`/getUserAssociation`)
+    }
+
 }
 
 const associationService = new AssociationService()

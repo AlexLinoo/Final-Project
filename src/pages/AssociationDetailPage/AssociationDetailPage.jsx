@@ -20,7 +20,7 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }, [])
 
-    const { name, description, image, address } = association
+    const { name, description, image, address, needs, children } = association
 
     return (
 
@@ -31,7 +31,7 @@ const AssociationDetailPage = () => {
                     <h1>CARGANDO</h1>
                     :
                     <>
-                        <h1 className="mb-4">Detalles de {name}</h1>
+                        <h1 className="mb-4">{name}</h1>
                         <hr />
 
                         <Row>
@@ -39,6 +39,9 @@ const AssociationDetailPage = () => {
                             <Col md={{ span: 6, offset: 1 }}>
                                 <h3>Especificaciones</h3>
                                 <p>{description}</p>
+                                <p>Necesidades: {needs}</p>
+                                <p>Niños: {children}</p>
+                                <p>Dirección: {address}</p>
                                 <hr />
 
                                 <Link to="/productos">

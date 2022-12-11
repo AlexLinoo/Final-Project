@@ -54,7 +54,7 @@ const AssociationListPage = () => {
 
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Modal heading</Modal.Title>
+                    <Modal.Title>Crea un perfil de Asociación</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <NewAssociationForm fireFinalActions={fireFinalActions} />

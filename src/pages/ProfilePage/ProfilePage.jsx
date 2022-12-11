@@ -6,7 +6,6 @@ import productService from "../../services/Product.service";
 import ProductList from "../../components/ProductList/ProductList";
 
 
-
 const ProfilePage = () => {
 
     const { user } = useContext(AuthContext)
@@ -37,17 +36,13 @@ const ProfilePage = () => {
             <h1>Tu Perfil</h1>
             <hr />
             <Card style={{ width: '18rem' }}>
-                <Card.Img variant="top" src={profileImage} />
+                <Card.Img variant="top" src={profileImage} alt="profilepic" />
                 <Card.Body>
                     <Card.Title>{username}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item>{email}</ListGroup.Item>
                 </ListGroup>
-                <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                </Card.Body>
             </Card>
             <div className="mt-5">
                 <h2>Tus Productos</h2>

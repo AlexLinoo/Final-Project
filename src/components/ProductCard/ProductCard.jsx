@@ -1,7 +1,7 @@
 import './ProductCard.css'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import productService from '../../services/Product.service'
 import { Modal } from 'react-bootstrap'
 import EditProductForm from '../EditProductForm/EditProductForm'
