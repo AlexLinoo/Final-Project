@@ -10,6 +10,7 @@ import NewAssociationPage from "../pages/NewAssociationPage/NewAssociationPage"
 import AssociationListPage from "../pages/AssociationListPage/AssociationListPage"
 import AssociationDetailPage from "../pages/AssociationDetailPage/AssociationDetailPage"
 import ProfilePage from "../pages/ProfilePage/ProfilePage"
+import HomePage from "../pages/HomePage/HomePage"
 
 
 const AppRoutes = () => {
@@ -18,7 +19,7 @@ const AppRoutes = () => {
 
         <Routes>
 
-            <Route path="/" element={<p>INICIO</p>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/productos/detalles/:product_id" element={<ProductDetailPage />} />
             <Route path="/productos" element={<ProductListPage />} />
             <Route path="/centros" element={<AssociationListPage />} />

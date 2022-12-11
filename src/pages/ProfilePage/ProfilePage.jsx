@@ -7,7 +7,6 @@ import ProductList from "../../components/ProductList/ProductList";
 import { Container, Row, Col } from 'react-bootstrap'
 
 
-
 const ProfilePage = () => {
 
     const { user } = useContext(AuthContext)

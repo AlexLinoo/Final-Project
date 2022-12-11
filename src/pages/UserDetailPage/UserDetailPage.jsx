@@ -3,13 +3,26 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import productService from "../../services/Product.service"
+import ProductList from "../../components/ProductList/ProductList"
+import Loader from "../../components/Loader/Loader"
 
 
 const UserDetailPage = () => {
 
     const [users, setUsers] = useState({})
+    const [products, setProducts] = useState()
 
     const { user_id } = useParams()
+
+    const loadUserProducts = () => {
+
+        productService
+
+            .getUserProducts()
+            .then(({ data }) => setProducts(data))
+            .catch(err => console.log(err))
+    }
 
     useEffect(() => {
 
@@ -29,7 +42,7 @@ const UserDetailPage = () => {
             {
                 !users
                     ?
-                    <h1>CARGANDO</h1>
+                    <Loader />
                     :
                     <>
                         <h1 className="mb-4">Peril de {username}</h1>
@@ -49,6 +62,9 @@ const UserDetailPage = () => {
                             <Col md={{ span: 4 }}>
                                 <img src={profileImage} style={{ width: '100%' }} />
                             </Col>
+                            <hr />
+
+                            {!products ? <Loader /> : <ProductList products={products} refreshProducts={loadUserProducts} />}
 
                         </Row>
                     </>

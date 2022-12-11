@@ -15,8 +15,10 @@ const App = () => {
             <Navigation />
 
             <Container>
+
                 <AppRoutes />
                 <UserMessage />
+
             </Container>
 
             <Footer />
