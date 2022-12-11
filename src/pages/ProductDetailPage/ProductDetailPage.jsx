@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { FavoriteButton } from "../../components/favorite/favorite"
+
 
 
 const ProductDetailPage = () => {

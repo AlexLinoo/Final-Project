@@ -14,10 +14,35 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
 
     const { user } = useContext(AuthContext)
 
+    const product = {
+        name,
+        image,
+        description,
+        _id,
+        type,
+        state,
+        owner
+    }
+
+
     const [showModal, setShowModal] = useState(false)
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
+
+    const likeProduct = () => {
+        productService
+            .getProductFav(_id)
+            .then(() => fireFinalActions())
+            .catch(err => (err))
+    }
+
+    const unLikeProduct = () => {
+        productService
+            .quitProductFav(_id)
+            .then(() => fireFinalActions())
+            .catch(err => (err))
+    }
 
     const fireFinalActions = () => {
         refreshProducts()
@@ -47,6 +72,18 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                             <Button variant="dark" size="sm">Ver detalles</Button>
                         </div>
                     </Link>
+
+                    {!user?.favorites?.includes(product._id) ?
+
+                        <div className="d-grid mt-3">
+                            <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                        </div>
+                        :
+                        <div className="d-grid mt-3">
+                            <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
+                        </div>
+                    }
+
                     {
                         owner?._id === user?._id &&
 
@@ -55,6 +92,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                                 <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
                             </div>
                             {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+
                         </>
                     }
                 </Card.Body>
@@ -68,6 +106,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                 </Modal.Body>
 
             </Modal>
+
         </div>
     )
 }

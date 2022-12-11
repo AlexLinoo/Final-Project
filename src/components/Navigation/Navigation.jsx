@@ -27,6 +27,7 @@ const Navigation = () => {
                             <Nav.Link as="div">Asociaciones</Nav.Link>
                         </Link>
 
+
                         {user ?
                             <>
 
@@ -34,6 +35,10 @@ const Navigation = () => {
                                 <Link to="/usuarios">
                                     <Nav.Link as="div">Usuarios</Nav.Link>
                                 </Link>
+                                <Link to="/usuarios/mi-perfil">
+                                    <Nav.Link as="div">mi perfil </Nav.Link>
+                                </Link>
+
 
                             </>
                             :
@@ -45,6 +50,7 @@ const Navigation = () => {
                                 <Link to="/iniciar-sesion">
                                     <Nav.Link as="div">Iniciar Sesión</Nav.Link>
                                 </Link>
+
 
                             </>
                         }
