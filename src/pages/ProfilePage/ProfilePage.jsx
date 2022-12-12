@@ -29,7 +29,7 @@ const ProfilePage = () => {
         productService
             .getUserFavs()
             .then(({ data }) => {
-                const ids = data.favorites.map(el => el._id)
+                const ids = data.favorites.map(el => el)
                 setFavProducts(ids)
             })
             .catch(err => console.log(err))
