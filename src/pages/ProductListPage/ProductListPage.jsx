@@ -15,6 +15,7 @@ const ProductListPage = () => {
 
     const [products, setProducts] = useState()
     const [showModal, setShowModal] = useState(false)
+    const [filteredProducts, setFilteredProducts] = useState([])
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
@@ -26,7 +27,10 @@ const ProductListPage = () => {
         productService
 
             .getProducts()
-            .then(({ data }) => setProducts(data))
+            .then(({ data }) => {
+                setFilteredProducts(data)
+                setProducts(data)
+            })
             .catch(err => console.log(err))
     }
 
@@ -38,16 +42,18 @@ const ProductListPage = () => {
         closeModal()
 
     }
-    const handleFilterButton = (e) => {
-        // console.log(e.target.value)
 
-        let productCopy = []
+
+    const handleFilterButton = (e) => {
+
 
         if (e.target.value === 'all') {
-            productCopy = products
+            setFilteredProducts(products)
         } else {
-            productCopy = products.filter(elm => elm.type === e.target.value)
+            const productCopy = products.filter(elm => elm.type === e.target.value)
+            setFilteredProducts(productCopy)
         }
+
 
     }
 
@@ -68,14 +74,12 @@ const ProductListPage = () => {
                 {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
                 <hr />
                 <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary">Todos los Productos</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='toys' variant="outline-success">Juguetes</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='clothes' variant="outline-info">Ropa</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='school' variant="outline-warning">Material Escolar</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='others' variant="outline-dark">Otros</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">Juguetes</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info">Ropa</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning">Material Escolar</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark">Otros</Button>
 
-                <hr />
-
-                {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadProducts} />}
+                {!products ? <h1>Cargando productos</h1> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 
 
 

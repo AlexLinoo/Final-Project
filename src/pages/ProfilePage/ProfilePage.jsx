@@ -2,12 +2,18 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { useNavigate } from "react-router-dom";
 import productService from "../../services/Product.service";
 import ProductList from "../../components/ProductList/ProductList";
-import { Container, Row, Col } from 'react-bootstrap'
+import userService from "../../services/user.service";
+import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
 const ProfilePage = () => {
+
+    const navigate = useNavigate()
+
+    const [users, setUsers] = useState({})
 
     const { user } = useContext(AuthContext)
 
@@ -16,15 +22,16 @@ const ProfilePage = () => {
     const [favProducts, setFavProducts] = useState()
 
 
-    const { username, profileImage, email } = user
+    const { email, _id, } = user
 
     const getFavProducts = () => {
         productService
-            .getFavProduct()
+            .getProductFav()
             .then(({ data }) => setFavProducts(data))
             .catch(err => console.log(err))
 
     }
+
     const loadUserProducts = () => {
 
         productService
@@ -34,13 +41,29 @@ const ProfilePage = () => {
             .catch(err => console.log(err))
     }
 
+    const deleteUser = () => {
+        userService
+            .deleteOneUser(_id)
+            .then(() => navigate("/usuarios"))
+            .catch(err => (err))
+    }
+
+    const getOneUser = () => {
+        userService
+            .getOneUser(_id)
+            .then(({ data }) => setUsers(data))
+            .catch(err => console.log(err))
+    }
+
     useEffect(() => {
 
         loadUserProducts()
         getFavProducts()
+        getOneUser()
 
     }, [])
 
+    const { username, profileImage } = users
 
 
     return (
@@ -57,10 +80,12 @@ const ProfilePage = () => {
                             </Card.Body>
                             <ListGroup className="list-group-flush">
                                 <ListGroup.Item>{email}</ListGroup.Item>
+                                <ListGroup.Item></ListGroup.Item>
                             </ListGroup>
                             <Card.Body>
-                                <Card.Link href="#">Card Link</Card.Link>
-                                <Card.Link href="#">Another Link</Card.Link>
+                                <div className="d-grid mt-3">
+                                    <Button variant="danger" size="sm" onClick={deleteUser}>Borrar Perfil</Button>
+                                </div>
                             </Card.Body>
                         </Card>
                         <div className="mt-5">

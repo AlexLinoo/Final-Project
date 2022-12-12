@@ -10,6 +10,7 @@ import { AuthContext } from '../../contexts/auth.context'
 
 
 
+
 const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
 
     const { user } = useContext(AuthContext)
@@ -33,6 +34,13 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
     const likeProduct = () => {
         productService
             .getProductFav(_id)
+            .then(() => fireFinalActions())
+            .catch(err => (err))
+    }
+
+    const donateProduct = () => {
+        productService
+            .donateProduct(_id)
             .then(() => fireFinalActions())
             .catch(err => (err))
     }
@@ -73,17 +81,20 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                         </div>
                     </Link>
 
-                    {!user?.favorites?.includes(product._id) ?
+                    <>
+                        <Button variant="success" onClick={donateProduct}>solicitar producto</Button>
+                        {!user?.favorites?.includes(product._id) ?
 
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
-                        </div>
-                        :
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
-                        </div>
-                    }
+                            <div className="d-grid mt-3">
+                                <Button variant="warning" size="sm" onClick={likeProduct}>☆</Button>
+                            </div>
+                            :
+                            <div className="d-grid mt-3">
+                                <Button variant="warning" size="sm" onClick={unLikeProduct}>★</Button>
+                            </div>
 
+                        }
+                    </>
                     {
                         owner?._id === user?._id &&
 

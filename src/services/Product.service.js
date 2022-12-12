@@ -55,6 +55,10 @@ class ProductService {
     quitProductFav(product_id) {
         return this.api.post(`/noFavProduct/${product_id}`)
     }
+
+    donateProduct(product_id) {
+        return this.api.post(`donatedProduct/${product_id}`)
+    }
 }
 
 const productService = new ProductService()
