@@ -8,6 +8,7 @@ import EditProductForm from '../EditProductForm/EditProductForm'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { useEffect } from 'react'
+import associationService from '../../services/Association.service'
 
 
 
@@ -15,8 +16,6 @@ import { useEffect } from 'react'
 const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
 
     const [userFavs, setUserFavs] = useState([])
-
-    // rellenar con llamada a api
 
     const { user } = useContext(AuthContext)
 
@@ -31,7 +30,9 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
     }
 
 
+
     const [showModal, setShowModal] = useState(false)
+    const [Association, setAssociation] = useState()
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
@@ -42,10 +43,27 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
             .then(() => getUserFavs())
             .catch(err => (err))
     }
+    const [isAsosOwner, setIsAsosOwner] = useState(null)
 
-    const donateProduct = () => {
+    const getAssociatons = () => {
+
+        associationService
+            .getAssociatons()
+            .then(({ data }) => {
+                let AsosOwners = data.map(el => el.owner._id)
+                AsosOwners.some(elm => {
+                    if (elm === user._id) {
+                        setIsAsosOwner(true)
+                    }
+                })
+            })
+            .catch(err => (err))
+    }
+
+
+    const apply = () => {
         productService
-            .donateProduct(_id)
+            .applyForProduct(_id)
             .then(() => fireFinalActions())
             .catch(err => (err))
     }
@@ -73,16 +91,17 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
         productService
             .getUserFavs()
             .then(({ data }) => {
-                console.log(data.favorites)
                 const ids = data.favorites.map(el => el._id)
                 setUserFavs(ids)
             })
-            .catch(err => console.log(err))
+            .catch(err => (err))
 
     }
 
     useEffect(() => {
         getUserFavs()
+        getAssociatons()
+
     }, [])
 
     return (
@@ -101,13 +120,12 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                             <Button variant="dark" size="sm">Ver detalles</Button>
                         </div>
                     </Link>
-
-                    {/* <div className="d-grid mt-3">
-                        <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
-                    </div>
-                    <div className="d-grid mt-3">
-                        <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
-                    </div> */}
+                    {console.log('---------------------', isAsosOwner)}
+                    {isAsosOwner &&
+                        <div className="d-grid mt-3">
+                            <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
+                        </div>
+                    }
                     {
                         !userFavs.includes(product._id) ?
 
