@@ -25,7 +25,7 @@ const UserDetailPage = () => {
     }
 
     useEffect(() => {
-
+        loadUserProducts()
         userService
             .getOneUser(user_id)
             .then(({ data }) => setUsers(data))

@@ -4,8 +4,10 @@ import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import productService from "../../services/Product.service"
+import userService from "../../services/user.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
+
 
 
 
@@ -35,12 +37,24 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }
 
+    const getOneUser = () => {
+        userService
+            .getOneUser(owner)
+            .then(({ data }) => setUsers(data))
+            .catch(err => console.log(err))
+
+    }
+
     useEffect(() => {
         getDonations()
+        getOneUser()
+
+
         associationService
             .getOneAssociation(association_id)
             .then(({ data }) => {
                 setAssociation(data)
+
 
 
             })
@@ -65,8 +79,8 @@ const AssociationDetailPage = () => {
 
                             <Col md={{ span: 6, offset: 1 }}>
                                 <h3>Especificaciones</h3>
-                                <p>Persona de contacto: {owner}</p>
-                                <img src="" alt="" />
+                                <p>Persona de contacto: {users.username} : {users.email}</p>
+                                <img src={users.profileImage} alt="" />
                                 <p>{description}</p>
                                 <p>Necesidades: {needs}</p>
                                 <p>Niños: {children}</p>

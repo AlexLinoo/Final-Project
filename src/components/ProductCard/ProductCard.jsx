@@ -120,7 +120,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                             <Button variant="dark" size="sm">Ver detalles</Button>
                         </div>
                     </Link>
-                    {console.log('---------------------', isAsosOwner)}
                     {isAsosOwner &&
                         <div className="d-grid mt-3">
                             <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
