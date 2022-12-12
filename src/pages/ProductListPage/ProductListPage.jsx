@@ -39,15 +39,19 @@ const ProductListPage = () => {
 
     }
     const handleFilterButton = (e) => {
-        // console.log(e.target.value)
+        console.log(e.target.value)
 
-        let productCopy = []
+        let productCopy = [...products]
 
         if (e.target.value === 'all') {
-            productCopy = products
+            loadProducts()
+
         } else {
             productCopy = products.filter(elm => elm.type === e.target.value)
         }
+
+        setProducts(productCopy)
+
 
     }
 
@@ -68,10 +72,10 @@ const ProductListPage = () => {
                 {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
                 <hr />
                 <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary">Todos los Productos</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='toys' variant="outline-success">Juguetes</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='clothes' variant="outline-info">Ropa</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='school' variant="outline-warning">Material Escolar</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='others' variant="outline-dark">Otros</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">Juguetes</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info">Ropa</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning">Material Escolar</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark">Otros</Button>
 
                 <hr />
 

@@ -55,6 +55,10 @@ class ProductService {
     quitProductFav(product_id) {
         return this.api.post(`/noFavProduct/${product_id}`)
     }
+
+    getUserFavs() {
+        return this.api.get('/getFavProduct')
+    }
 }
 
 const productService = new ProductService()

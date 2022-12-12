@@ -53,7 +53,7 @@ const NewAssociationForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
-    const { name, description, children, address, } = associationData
+    const { name, description, children, address, needs } = associationData
 
     return (
 
@@ -81,15 +81,20 @@ const NewAssociationForm = ({ fireFinalActions }) => {
                 </Col>
 
             </Row>
-
             <Row>
-                <FormLabel>Tipo de necesidades</FormLabel>
-                <Form.Select className="mb-5" aria-label="Default select example" name="needs" onChange={handleInputChange}>
-                    <option value="Ropa">Ropa</option>
-                    <option value="Juguetes">Juguetes</option>
-                    <option value="Material Escolar">Material Escolar</option>
-                    <option value="Otros">Otros</option>
-                </Form.Select>
+                <InputGroup className="mb-3" onChange={handleInputChange}>
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Ropa' /><h5>Ropa</h5>
+
+
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Juguetes' /><h5>Juguetes</h5>
+
+
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Material Escolar' /><h5>Material Escolar</h5>
+
+
+                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Otros' /><h5>Otros</h5>
+
+                </InputGroup>
             </Row>
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Nº de niños que se encuentran en el centro actualmente</Form.Label>
@@ -105,3 +110,19 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 }
 
 export default NewAssociationForm
+
+
+/* function CheckboxesExample() {
+    return (
+        <>
+            <InputGroup className="mb-3">
+                <InputGroup.Checkbox aria-label="Checkbox for following text input" />
+                <Form.Control aria-label="Text input with checkbox" />
+            </InputGroup>
+            <InputGroup>
+                <InputGroup.Radio aria-label="Radio button for following text input" />
+                <Form.Control aria-label="Text input with radio button" />
+            </InputGroup>
+        </>
+    );
+} */

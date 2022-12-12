@@ -5,6 +5,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import productService from "../../services/Product.service";
 import ProductList from "../../components/ProductList/ProductList";
 import { Container, Row, Col } from 'react-bootstrap'
+import Loader from '../../components/Loader/Loader'
 
 
 const ProfilePage = () => {
@@ -18,10 +19,13 @@ const ProfilePage = () => {
 
     const { username, profileImage, email } = user
 
-    const getFavProducts = () => {
+    const getUserFavs = () => {
         productService
-            .getFavProduct()
-            .then(({ data }) => setFavProducts(data))
+            .getUserFavs()
+            .then(({ data }) => {
+                const ids = data.favorites.map(el => el._id)
+                setFavProducts(ids)
+            })
             .catch(err => console.log(err))
 
     }
@@ -37,7 +41,7 @@ const ProfilePage = () => {
     useEffect(() => {
 
         loadUserProducts()
-        getFavProducts()
+        getUserFavs()
 
     }, [])
 
@@ -70,7 +74,7 @@ const ProfilePage = () => {
                     <Col>
                         <h1>Favoritos</h1>
 
-                        {!favProducts ? <h1>Cargando productos</h1> : <ProductList products={favProducts} refreshProducts={getFavProducts} />}
+                        {!favProducts ? <Loader /> : <ProductList products={favProducts} refreshProducts={getUserFavs} />}
                     </Col>
                 </Row>
             </Container>

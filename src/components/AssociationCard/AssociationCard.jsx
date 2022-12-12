@@ -49,7 +49,7 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>Dirección: {address}</Card.Text>
-                    <Card.Text>Tipo de necesidades: {needs}</Card.Text>
+                    <Card.Text>Tipo de necesidades: {[needs]}</Card.Text>
                     <Card.Text>{description}</Card.Text>
                     <Card.Text>Numero de niños: {children}</Card.Text>
                     <Link to={`/centros/detalles/${_id}`}>

@@ -7,10 +7,15 @@ import { Modal } from 'react-bootstrap'
 import EditProductForm from '../EditProductForm/EditProductForm'
 import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
+import { useEffect } from 'react'
 
 
 
 const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
+
+    const [userFavs, setUserFavs] = useState([])
+
+    // rellenar con llamada a api
 
     const { user } = useContext(AuthContext)
 
@@ -33,14 +38,16 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
     const likeProduct = () => {
         productService
             .getProductFav(_id)
-            .then(() => fireFinalActions())
+            .then(() => getUserFavs())
             .catch(err => (err))
     }
+
+
 
     const unLikeProduct = () => {
         productService
             .quitProductFav(_id)
-            .then(() => fireFinalActions())
+            .then(() => getUserFavs())
             .catch(err => (err))
     }
 
@@ -55,6 +62,22 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
             .then(() => fireFinalActions())
             .catch(err => (err))
     }
+
+    const getUserFavs = () => {
+        productService
+            .getUserFavs()
+            .then(({ data }) => {
+                console.log(data.favorites)
+                const ids = data.favorites.map(el => el._id)
+                setUserFavs(ids)
+            })
+            .catch(err => console.log(err))
+
+    }
+
+    useEffect(() => {
+        getUserFavs()
+    }, [])
 
     return (
 
@@ -73,15 +96,22 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                         </div>
                     </Link>
 
-                    {!user?.favorites?.includes(product._id) ?
+                    {/* <div className="d-grid mt-3">
+                        <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                    </div>
+                    <div className="d-grid mt-3">
+                        <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
+                    </div> */}
+                    {
+                        !userFavs.includes(product._id) ?
 
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
-                        </div>
-                        :
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
-                        </div>
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                            </div>
+                            :
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
+                            </div>
                     }
 
                     {
