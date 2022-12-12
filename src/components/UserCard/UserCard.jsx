@@ -2,6 +2,7 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import userService from '../../services/user.service'
+import './UserCard.css'
 
 
 const UserCard = ({ username, profileImage, _id }) => {
@@ -18,7 +19,7 @@ const UserCard = ({ username, profileImage, _id }) => {
     return (
 
         <div key={_id}>
-            <Card className="mb-4 ProductCard">
+            <Card className="mb-4 UserCard">
                 <Card.Img variant="top" src={profileImage} />
                 <Card.Body>
                     <Card.Title>{username}</Card.Title>
@@ -26,9 +27,6 @@ const UserCard = ({ username, profileImage, _id }) => {
                     <Link to={`/usuarios/perfil/${_id}`}>
                         <div className="d-grid">
                             <Button variant="dark" size="sm">Perfil</Button>
-                        </div>
-                        <div className="d-grid mt-3">
-                            <Button variant="danger" size="sm" onClick={deleteUser}>Borrar Usuario</Button>
                         </div>
                     </Link>
                 </Card.Body>

@@ -1,0 +1,8 @@
+.UserCard {
+    box-shadow: 0px 0px 15px grey;
+}
+
+.ProductCard img {
+    height: 150px;
+    object-fit: cover;
+}

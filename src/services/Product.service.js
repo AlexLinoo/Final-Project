@@ -59,6 +59,10 @@ class ProductService {
     getUserFavs() {
         return this.api.get('/getFavProduct')
     }
+
+    donateProduct(product_id) {
+        return this.api.post(`donatedProduct/${product_id}`)
+    }
 }
 
 const productService = new ProductService()

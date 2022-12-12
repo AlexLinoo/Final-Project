@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 
 
 
+
 const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
 
     const [userFavs, setUserFavs] = useState([])
@@ -42,7 +43,12 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
             .catch(err => (err))
     }
 
-
+    const donateProduct = () => {
+        productService
+            .donateProduct(_id)
+            .then(() => fireFinalActions())
+            .catch(err => (err))
+    }
 
     const unLikeProduct = () => {
         productService
