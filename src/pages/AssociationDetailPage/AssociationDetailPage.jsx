@@ -3,7 +3,10 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import userService from "../../services/user.service"
+import productService from "../../services/Product.service"
+import Loader from "../../components/Loader/Loader"
+import ProductList from "../../components/ProductList/ProductList"
+
 
 
 const AssociationDetailPage = () => {
@@ -12,28 +15,34 @@ const AssociationDetailPage = () => {
 
     const [users, setUsers] = useState({})
 
+    const [donations, setDonations] = useState(null)
+
     const { association_id } = useParams()
 
     const { name, description, image, address, needs, children, owner } = association
 
-    const getOneUser = () => {
 
-        userService
-            .getOneUser(owner)
+    const getDonations = () => {
+        productService
+            .getDonations()
             .then(({ data }) => {
-                setUsers({ data })
+                const ids = data.donated.map(elm => elm)
+                setDonations(ids)
+                console.log(ids)
+
+
             })
             .catch(err => console.log(err))
-
     }
 
     useEffect(() => {
-
+        getDonations()
         associationService
             .getOneAssociation(association_id)
             .then(({ data }) => {
                 setAssociation(data)
-                getOneUser()
+
+
             })
             .catch(err => console.log(err))
     }, [])
@@ -72,7 +81,11 @@ const AssociationDetailPage = () => {
                             <Col md={{ span: 4 }}>
                                 <img src={image} style={{ width: '100%' }} />
                             </Col>
+                            <Col>
+                                <h1>Productos Donados</h1>
 
+                                {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
+                            </Col>
                         </Row>
                     </>
             }
