@@ -25,7 +25,6 @@ const ProductListPage = () => {
     const loadProducts = () => {
 
         productService
-
             .getProducts()
             .then(({ data }) => {
                 setFilteredProducts(data)

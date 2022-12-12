@@ -60,9 +60,15 @@ class ProductService {
         return this.api.get('/getFavProduct')
     }
 
-    donateProduct(product_id) {
-        return this.api.post(`donatedProduct/${product_id}`)
+    applyForProduct(product_id) {
+        return this.api.post(`applyForProduct/${product_id}`)
     }
+
+    getDonations() {
+        return this.api.get('/getDonations')
+    }
+
+
 }
 
 const productService = new ProductService()

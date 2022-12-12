@@ -25,16 +25,6 @@ const ProfilePage = () => {
 
     const { email, _id, } = user
 
-    const getUserFavs = () => {
-        productService
-            .getUserFavs()
-            .then(({ data }) => {
-                const ids = data.favorites.map(el => el)
-                setFavProducts(ids)
-            })
-            .catch(err => console.log(err))
-
-    }
 
     const loadUserProducts = () => {
 
@@ -45,6 +35,17 @@ const ProfilePage = () => {
             .catch(err => console.log(err))
     }
 
+    const getUserFavs = () => {
+        productService
+            .getUserFavs()
+            .then(({ data }) => {
+                const ids = data.favorites.map(elm => elm)
+                setFavProducts(ids)
+
+            })
+            .catch(err => console.log(err))
+
+    }
     const deleteUser = () => {
         userService
             .deleteOneUser(_id)

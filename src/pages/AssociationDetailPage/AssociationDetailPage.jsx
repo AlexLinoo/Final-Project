@@ -3,24 +3,42 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import userService from "../../services/user.service"
 
 
 const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState({})
 
+    const [users, setUsers] = useState({})
+
     const { association_id } = useParams()
+
+    const { name, description, image, address, needs, children, owner } = association
+
+    const getOneUser = () => {
+
+        userService
+            .getOneUser(owner)
+            .then(({ data }) => {
+                setUsers({ data })
+            })
+            .catch(err => console.log(err))
+
+    }
 
     useEffect(() => {
 
         associationService
-
             .getOneAssociation(association_id)
-            .then(({ data }) => setAssociation(data))
+            .then(({ data }) => {
+                setAssociation(data)
+                getOneUser()
+            })
             .catch(err => console.log(err))
     }, [])
 
-    const { name, description, image, address, needs, children, owner } = association
+
 
     return (
 
@@ -39,6 +57,7 @@ const AssociationDetailPage = () => {
                             <Col md={{ span: 6, offset: 1 }}>
                                 <h3>Especificaciones</h3>
                                 <p>Persona de contacto: {owner}</p>
+                                <img src="" alt="" />
                                 <p>{description}</p>
                                 <p>Necesidades: {needs}</p>
                                 <p>Niños: {children}</p>
