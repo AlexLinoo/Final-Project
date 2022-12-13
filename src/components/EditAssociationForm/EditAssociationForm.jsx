@@ -55,6 +55,13 @@ const EditAssociationForm = ({ fireFinalActions, association }) => {
             .catch(err => console.log(err))
     }
 
+    const handleCheckbox = (e) => {
+        const { name, checked } = e.target
+        setAssociationData({ ...associationData, needs: { ...associationData.needs, [name]: checked } })
+
+        console.log(e)
+    }
+
     const { name, description, address, children, needs } = associationData
 
 
@@ -86,13 +93,19 @@ const EditAssociationForm = ({ fireFinalActions, association }) => {
             </Row>
 
             <Row>
-                <FormLabel>Tipo de necesidades</FormLabel>
-                <Form.Select className="mb-5" aria-label="Default select example" name="needs" onChange={handleInputChange}>
-                    <option value="Ropa">Ropa</option>
-                    <option value="Juguetes">Juguetes</option>
-                    <option value="Material Escolar">Material Escolar</option>
-                    <option value="Otros">Otros</option>
-                </Form.Select>
+
+                <Form.Check onChange={handleCheckbox} label='Ropa' type='switch' id='custom-switch' name="ropa" />
+
+
+                <Form.Check onChange={handleCheckbox} label='Juguetes' type='switch' name="juguetes" id='custom-switch' />
+
+
+                <Form.Check onChange={handleCheckbox} label='Material Escolar' type='switch' name="material_escolar" id='custom-switch' />
+
+
+                <Form.Check onChange={handleCheckbox} label='Otros' type='switch' name="otros" id='custom-switch' />
+
+
             </Row>
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Nº de niños que se encuentran en el centro actualmente</Form.Label>

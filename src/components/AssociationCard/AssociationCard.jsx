@@ -22,6 +22,7 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
         _id,
         owner
     }
+    console.log(needs)
 
     const [showModal, setShowModal] = useState(false)
     const { user } = useContext(AuthContext)
@@ -49,8 +50,11 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>Dirección: {address}</Card.Text>
-                    <Card.Text>Tipo de necesidades: {[needs]}</Card.Text>
-                    <Card.Text>{description}</Card.Text>
+                    <Card.Text>Tipo Necesidades</Card.Text>
+                    {needs.ropa && <Card.Text>ropa</Card.Text>}
+                    {needs.juguetes && <Card.Text>juguetes</Card.Text>}
+                    {needs.material_escolar && <Card.Text>material escolar</Card.Text>}
+                    {needs.otros && <Card.Text>otros</Card.Text>}
                     <Card.Text>Numero de niños: {children}</Card.Text>
                     <Link to={`/centros/detalles/${_id}`}>
                         <div className="d-grid">
