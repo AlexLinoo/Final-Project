@@ -22,7 +22,6 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
         _id,
         owner
     }
-    console.log(needs)
 
     const [showModal, setShowModal] = useState(false)
     const { user } = useContext(AuthContext)
