@@ -1,7 +1,7 @@
 import associationService from "../../services/Association.service"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Container, Row, Col, Button } from "react-bootstrap"
+import { Container, Row, Col, Button, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import productService from "../../services/Product.service"
 import Loader from "../../components/Loader/Loader"
@@ -73,7 +73,10 @@ const AssociationDetailPage = () => {
                     <p>email: {owner.email}</p>
                     <img src={owner.profileImage} alt="" />
                     <p>{description}</p>
-                    <p>Necesidades: {needs}</p>
+                    {needs.ropa && <Card.Text>ropa</Card.Text>}
+                    {needs.juguetes && <Card.Text>juguetes</Card.Text>}
+                    {needs.material_escolar && <Card.Text>material escolar</Card.Text>}
+                    {needs.otros && <Card.Text>otros</Card.Text>}
                     <p>Niños: {children}</p>
                     <p>Dirección: {address}</p>
                     <hr />
