@@ -11,8 +11,14 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         description: '',
         image: '',
         address: '',
-        needs: '',
         children: ''
+    })
+
+    const [needs, setNeeds] = useState({
+        ropa: false,
+        juguetes: false,
+        material_escolar: false,
+        otros: false
     })
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -53,7 +59,11 @@ const NewAssociationForm = ({ fireFinalActions }) => {
             .catch(err => console.log(err))
     }
 
-    const { name, description, children, address, needs } = associationData
+    const handleCheckbox = (e) => {
+        console.log(e)
+    }
+
+    const { name, description, children, address } = associationData
 
     return (
 
@@ -82,7 +92,7 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 
             </Row>
             <Row>
-                <InputGroup className="mb-3" onChange={handleInputChange}>
+                <InputGroup className="mb-3" onChange={handleCheckbox}>
                     <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Ropa' /><h5>Ropa</h5>
 
 
