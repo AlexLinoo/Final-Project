@@ -50,10 +50,14 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
         associationService
             .getAssociatons()
             .then(({ data }) => {
-                let AsosOwners = data.map(el => el.owner._id)
+                let AsosOwners = data.map(el => {
+                    return ({ owner: el.owner._id, id: el._id })
+                })
+
                 AsosOwners.some(elm => {
-                    if (elm === user._id) {
-                        setIsAsosOwner(true)
+
+                    if (elm.owner === user._id) {
+                        setIsAsosOwner(elm.id)
                     }
                 })
             })
@@ -63,7 +67,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
 
     const apply = () => {
         productService
-            .applyForProduct(_id)
+            .applyForProduct(_id, isAsosOwner)
             .then(() => fireFinalActions())
             .catch(err => (err))
     }
@@ -101,7 +105,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
     useEffect(() => {
         getUserFavs()
         getAssociatons()
-
     }, [])
 
     return (
@@ -112,7 +115,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>Donado por : {owner?.username}</Card.Text>
-                    <Card.Text>Descripción: {description}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
                     <Link to={`/productos/detalles/${_id}`}>

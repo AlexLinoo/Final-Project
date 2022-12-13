@@ -1,11 +1,11 @@
 import { useEffect, useState, useContext } from "react"
 import AssociationList from "../../components/AssociationList/AssociationList"
 import associationService from "../../services/Association.service"
-import userService from "../../services/user.service"
 import { Container, Modal, Button } from "react-bootstrap"
 import NewAssociationForm from "../../components/NewAssociationForm/NewAssociationForm"
 import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
+import Loader from "../../components/Loader/Loader"
 
 
 
@@ -52,7 +52,7 @@ const AssociationListPage = () => {
 
                 <hr />
 
-                {!associations ? <h1>Cargando Centros</h1> : <AssociationList associations={associations} refreshAssociations={loadAssociations} />}
+                {!associations ? <Loader /> : <AssociationList associations={associations} refreshAssociations={loadAssociations} />}
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>
