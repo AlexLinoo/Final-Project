@@ -11,15 +11,16 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         description: '',
         image: '',
         address: '',
-        children: ''
+        children: '',
+        needs: { ropa: null, material_escolar: null, juguetes: null, otros: null }
     })
 
-    const [needs, setNeeds] = useState({
-        ropa: false,
-        juguetes: false,
-        material_escolar: false,
-        otros: false
-    })
+    // const [needs, setNeeds] = useState({
+    //     ropa: false,
+    //     juguetes: false,
+    //     material_escolar: false,
+    //     otros: false
+    // })
 
     const [loadingImage, setLoadingImage] = useState(false)
     const [errors, setErrors] = useState([])
@@ -60,6 +61,9 @@ const NewAssociationForm = ({ fireFinalActions }) => {
     }
 
     const handleCheckbox = (e) => {
+        const { name, checked } = e.target
+        setAssociationData({ ...associationData, needs: { ...associationData.needs, [name]: checked } })
+
         console.log(e)
     }
 
@@ -92,19 +96,19 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 
             </Row>
             <Row>
-                <InputGroup className="mb-3" onChange={handleCheckbox}>
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Ropa' /><h5>Ropa</h5>
+
+                <Form.Check onChange={handleCheckbox} label='Ropa' type='switch' id='custom-switch' name="ropa" />
 
 
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Juguetes' /><h5>Juguetes</h5>
+                <Form.Check onChange={handleCheckbox} label='Juguetes' type='switch' name="juguetes" id='custom-switch' />
 
 
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Material Escolar' /><h5>Material Escolar</h5>
+                <Form.Check onChange={handleCheckbox} label='Material Escolar' type='switch' name="material_escolar" id='custom-switch' />
 
 
-                    <InputGroup.Checkbox aria-label="Checkbox for following text input" name="needs" value='Otros' /><h5>Otros</h5>
+                <Form.Check onChange={handleCheckbox} label='Otros' type='switch' name="otros" id='custom-switch' />
 
-                </InputGroup>
+
             </Row>
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Nº de niños que se encuentran en el centro actualmente</Form.Label>
@@ -114,7 +118,7 @@ const NewAssociationForm = ({ fireFinalActions }) => {
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear Centro'}</Button>
             </div>
-        </Form>
+        </Form >
 
     )
 }
@@ -122,17 +126,3 @@ const NewAssociationForm = ({ fireFinalActions }) => {
 export default NewAssociationForm
 
 
-/* function CheckboxesExample() {
-    return (
-        <>
-            <InputGroup className="mb-3">
-                <InputGroup.Checkbox aria-label="Checkbox for following text input" />
-                <Form.Control aria-label="Text input with checkbox" />
-            </InputGroup>
-            <InputGroup>
-                <InputGroup.Radio aria-label="Radio button for following text input" />
-                <Form.Control aria-label="Text input with radio button" />
-            </InputGroup>
-        </>
-    );
-} */

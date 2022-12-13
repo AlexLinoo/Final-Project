@@ -7,7 +7,7 @@ import productService from "../../services/Product.service"
 import userService from "../../services/user.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
-import userService from "../../services/user.service"
+
 
 
 
