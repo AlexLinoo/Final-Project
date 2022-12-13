@@ -61,7 +61,6 @@ class ProductService {
     }
 
     applyForProduct(product_id, association_id) {
-
         return this.api.put(`/applyForProduct/${association_id}`, { donated: product_id })
     }
 
