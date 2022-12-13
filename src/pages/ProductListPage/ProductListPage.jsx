@@ -6,6 +6,7 @@ import NewProductForm from './../../components/NewProductForm/NewProduct'
 import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
 import './ProductListPage.css'
+import Loader from "../../components/Loader/Loader"
 
 
 
@@ -78,7 +79,7 @@ const ProductListPage = () => {
                 <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning">Material Escolar</Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark">Otros</Button>
 
-                {!products ? <h1>Cargando productos</h1> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
+                {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 
 
 

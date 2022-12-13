@@ -4,20 +4,13 @@ import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import productService from "../../services/Product.service"
-import userService from "../../services/user.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
-import userService from "../../services/user.service"
-
-
-
 
 
 const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
-
-    const [users, setUsers] = useState({})
 
     const [donations, setDonations] = useState(null)
 
@@ -44,7 +37,6 @@ const AssociationDetailPage = () => {
         associationService
             .getOneAssociation(association_id)
             .then(({ data }) => {
-                console.log(data)
                 setAssociation(data)
                 setIsLoading(false)
 
@@ -58,7 +50,7 @@ const AssociationDetailPage = () => {
     }, [])
 
     if (isLoading) {
-        return (<p>Cargando...</p>)
+        return (<Loader />)
     }
 
     const { name, description, image, address, needs, children, owner } = association
@@ -67,41 +59,42 @@ const AssociationDetailPage = () => {
     return (
 
         <Container>
-            {
 
-                <>
-                    <h1 className="mb-4">{name}</h1>
+
+
+            <h1 className="mb-4">{name}</h1>
+            <hr />
+
+            <Row>
+
+                <Col md={{ span: 6, offset: 1 }}>
+                    <h3>Especificaciones</h3>
+                    <p>Persona de contacto: <Link to={`/usuarios/perfil/${owner._id}`}>{owner.username}</Link></p>
+                    <p>email: {owner.email}</p>
+                    <img src={owner.profileImage} alt="" />
+                    <p>{description}</p>
+                    <p>Necesidades: {needs}</p>
+                    <p>Niños: {children}</p>
+                    <p>Dirección: {address}</p>
                     <hr />
 
-                    <Row>
+                    <Link to="/productos">
+                        <Button as="div" variant="dark">Volver a la lista </Button>
+                    </Link>
+                </Col>
 
-                        <Col md={{ span: 6, offset: 1 }}>
-                            <h3>Especificaciones</h3>
-                            <p>Persona de contacto: {owner.username} : {owner.email}</p>
-                            <img src={users.profileImage} alt="" />
-                            <p>{description}</p>
-                            <p>Necesidades: {needs}</p>
-                            <p>Niños: {children}</p>
-                            <p>Dirección: {address}</p>
-                            <hr />
+                <Col md={{ span: 4 }}>
+                    <img src={image} style={{ width: '100%' }} />
+                </Col>
+                <Col>
+                    <h1>Productos Donados</h1>
 
-                            <Link to="/productos">
-                                <Button as="div" variant="dark">Volver a la lista </Button>
-                            </Link>
-                        </Col>
+                    {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
+                </Col>
+            </Row>
 
-                        <Col md={{ span: 4 }}>
-                            <img src={image} style={{ width: '100%' }} />
-                        </Col>
-                        <Col>
-                            <h1>Productos Donados</h1>
 
-                            {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
-                        </Col>
-                    </Row>
-                </>
-            }
-        </Container>
+        </Container >
     )
 }
 

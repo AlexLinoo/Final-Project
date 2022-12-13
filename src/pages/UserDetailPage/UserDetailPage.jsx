@@ -34,7 +34,7 @@ const UserDetailPage = () => {
     }, [])
 
 
-    const { username, profileImage } = users
+    const { username, profileImage, email } = users
 
     return (
 
@@ -51,21 +51,24 @@ const UserDetailPage = () => {
                         <Row>
 
                             <Col md={{ span: 6, offset: 1 }}>
-                                <p>DETALLES DEL USUARIO AQUI(productos)</p>
+                                <p>email: {email}</p>
                                 <hr />
 
-                                <Link to="/">
+                                {/* <Link to="/">
                                     <Button as="div" variant="dark">Volver Inicio</Button>
-                                </Link>
+                                </Link> */}
                             </Col>
 
                             <Col md={{ span: 4 }}>
                                 <img src={profileImage} style={{ width: '100%' }} />
                             </Col>
                             <hr />
+                            <h1>Productos de {username}</h1>
 
-                            {!products ? <Loader /> : <ProductList products={products} refreshProducts={loadUserProducts} />}
-
+                            <br />
+                            <div className="mt-5">
+                                {!products ? <Loader /> : <ProductList products={products} refreshProducts={loadUserProducts} />}
+                            </div>
                         </Row>
                     </>
             }

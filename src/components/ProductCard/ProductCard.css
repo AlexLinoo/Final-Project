@@ -6,4 +6,9 @@
 .ProductCard {
     box-shadow: 0px 0px 15px grey;
     height: 550px;
+
+}
+
+.ProductCard:hover {
+    transform: scale(1.05);
 }
