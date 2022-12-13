@@ -3,7 +3,6 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import productService from "../../services/Product.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
 
@@ -12,28 +11,14 @@ const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
 
-    const [donations, setDonations] = useState(null)
-
     const { association_id } = useParams()
 
     const [isLoading, setIsLoading] = useState(true)
 
-    const getDonations = () => {
-        productService
-            .getDonations()
-            .then(({ data }) => {
-                const ids = data.donated.map(elm => elm)
-                setDonations(ids)
-                console.log(ids)
-
-
-            })
-            .catch(err => console.log(err))
-    }
-
-
     const getAssociation = (association_id) => {
+
         setIsLoading(true)
+
         associationService
             .getOneAssociation(association_id)
             .then(({ data }) => {
@@ -44,17 +29,21 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }
 
+
     useEffect(() => {
-        getDonations()
+
         getAssociation(association_id)
+
+
     }, [])
 
     if (isLoading) {
         return (<Loader />)
     }
 
-    const { name, description, image, address, needs, children, owner } = association
+    const { name, description, image, address, needs, children, owner, donated } = association
 
+    const donations = donated.map(elm => elm)
 
     return (
 
@@ -77,6 +66,7 @@ const AssociationDetailPage = () => {
                     {needs.juguetes && <Card.Text>juguetes</Card.Text>}
                     {needs.material_escolar && <Card.Text>material escolar</Card.Text>}
                     {needs.otros && <Card.Text>otros</Card.Text>}
+                    {/* <p> donaciones: {donated.map(elm => elm.name)}</p> */}
                     <p>Niños: {children}</p>
                     <p>Dirección: {address}</p>
                     <hr />
@@ -92,7 +82,7 @@ const AssociationDetailPage = () => {
                 <Col>
                     <h1>Productos Donados</h1>
 
-                    {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
+                    {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getAssociation} />}
                 </Col>
             </Row>
 

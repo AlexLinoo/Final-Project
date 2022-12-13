@@ -61,12 +61,12 @@ class ProductService {
     }
 
     applyForProduct(product_id, association_id) {
-        console.log(association_id)
+
         return this.api.put(`/applyForProduct/${association_id}`, { donated: product_id })
     }
 
-    getDonations() {
-        return this.api.get('/getDonations')
+    getDonations(association_id) {
+        return this.api.get(`/getDonations/${association_id}`)
     }
 
 
