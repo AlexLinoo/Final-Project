@@ -6,6 +6,8 @@ import { Link } from "react-router-dom"
 import productService from "../../services/Product.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
+import userService from "../../services/user.service"
+
 
 
 
@@ -35,8 +37,16 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }
 
+    const getOneUser = () => {
+        userService
+            .getOneUser(owner)
+            .then(({ data }) => setUsers(data))
+            .catch(err => console.log(err))
+    }
+
     useEffect(() => {
         getDonations()
+        getOneUser()
         associationService
             .getOneAssociation(association_id)
             .then(({ data }) => {

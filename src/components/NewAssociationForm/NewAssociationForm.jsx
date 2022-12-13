@@ -11,7 +11,7 @@ const NewAssociationForm = ({ fireFinalActions }) => {
         description: '',
         image: '',
         address: '',
-        needs: '',
+        needs: [],
         children: ''
     })
 
