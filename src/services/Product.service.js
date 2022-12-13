@@ -64,8 +64,8 @@ class ProductService {
         return this.api.put('/applyForProduct', { donated: product_id })
     }
 
-    getDonations(roduct_id) {
-        return this.api.post('/getDonations')
+    getDonations() {
+        return this.api.get('/getDonations')
     }
 
 

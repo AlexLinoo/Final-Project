@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import productService from "../../services/Product.service"
+import userService from "../../services/user.service"
 import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
 import userService from "../../services/user.service"
@@ -11,9 +12,10 @@ import userService from "../../services/user.service"
 
 
 
+
 const AssociationDetailPage = () => {
 
-    const [association, setAssociation] = useState({})
+    const [association, setAssociation] = useState(null)
 
     const [users, setUsers] = useState({})
 
@@ -21,8 +23,7 @@ const AssociationDetailPage = () => {
 
     const { association_id } = useParams()
 
-    const { name, description, image, address, needs, children, owner } = association
-
+    const [isLoading, setIsLoading] = useState(true)
 
     const getDonations = () => {
         productService
@@ -37,67 +38,68 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }
 
-    const getOneUser = () => {
-        userService
-            .getOneUser(owner)
-            .then(({ data }) => setUsers(data))
+
+    const getAssociation = (association_id) => {
+        setIsLoading(true)
+        associationService
+            .getOneAssociation(association_id)
+            .then(({ data }) => {
+                console.log(data)
+                setAssociation(data)
+                setIsLoading(false)
+
+            })
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
         getDonations()
-        getOneUser()
-        associationService
-            .getOneAssociation(association_id)
-            .then(({ data }) => {
-                setAssociation(data)
-
-
-            })
-            .catch(err => console.log(err))
+        getAssociation(association_id)
     }, [])
 
+    if (isLoading) {
+        return (<p>Cargando...</p>)
+    }
+
+    const { name, description, image, address, needs, children, owner } = association
 
 
     return (
 
         <Container>
             {
-                !association
-                    ?
-                    <h1>CARGANDO</h1>
-                    :
-                    <>
-                        <h1 className="mb-4">{name}</h1>
-                        <hr />
 
-                        <Row>
+                <>
+                    <h1 className="mb-4">{name}</h1>
+                    <hr />
 
-                            <Col md={{ span: 6, offset: 1 }}>
-                                <h3>Especificaciones</h3>
-                                <p>Persona de contacto: {owner}</p>
-                                <img src="" alt="" />
-                                <p>{description}</p>
-                                <p>Necesidades: {needs}</p>
-                                <p>Niños: {children}</p>
-                                <p>Dirección: {address}</p>
-                                <hr />
+                    <Row>
 
-                                <Link to="/productos">
-                                    <Button as="div" variant="dark">Volver a la lista </Button>
-                                </Link>
-                            </Col>
+                        <Col md={{ span: 6, offset: 1 }}>
+                            <h3>Especificaciones</h3>
+                            <p>Persona de contacto: {owner.username} : {owner.email}</p>
+                            <img src={users.profileImage} alt="" />
+                            <p>{description}</p>
+                            <p>Necesidades: {needs}</p>
+                            <p>Niños: {children}</p>
+                            <p>Dirección: {address}</p>
+                            <hr />
 
-                            <Col md={{ span: 4 }}>
-                                <img src={image} style={{ width: '100%' }} />
-                            </Col>
-                            <Col>
-                                <h1>Productos Donados</h1>
+                            <Link to="/productos">
+                                <Button as="div" variant="dark">Volver a la lista </Button>
+                            </Link>
+                        </Col>
 
-                                {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
-                            </Col>
-                        </Row>
-                    </>
+                        <Col md={{ span: 4 }}>
+                            <img src={image} style={{ width: '100%' }} />
+                        </Col>
+                        <Col>
+                            <h1>Productos Donados</h1>
+
+                            {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
+                        </Col>
+                    </Row>
+                </>
             }
         </Container>
     )
