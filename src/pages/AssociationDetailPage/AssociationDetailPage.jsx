@@ -8,6 +8,9 @@ import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
 
 
+
+
+
 const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
@@ -32,7 +35,6 @@ const AssociationDetailPage = () => {
             .catch(err => console.log(err))
     }
 
-
     const getAssociation = (association_id) => {
         setIsLoading(true)
         associationService
@@ -55,6 +57,7 @@ const AssociationDetailPage = () => {
     }
 
     const { name, description, image, address, needs, children, owner } = association
+
 
 
     return (
