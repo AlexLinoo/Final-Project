@@ -25,6 +25,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
         _id,
         type,
         state,
+        owner,
         status
     }
 
