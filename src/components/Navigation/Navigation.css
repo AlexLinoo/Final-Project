@@ -4,4 +4,11 @@ a {
 
 .welcome {
     margin-left: 525px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.avatar {
+    margin-left: 10px;
+    height: 70px;
 }

@@ -7,7 +7,10 @@ import { AuthContext } from '../../contexts/auth.context'
 import associationService from '../../services/Association.service'
 import { useContext } from 'react'
 import { Modal } from 'react-bootstrap'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditAssociationForm from '../EditAssociationForm/EditAssociationForm'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 
@@ -56,8 +59,8 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
                     {needs.otros && <Card.Text>otros</Card.Text>}
                     <Card.Text>Numero de niños: {children}</Card.Text>
                     <Link to={`/centros/detalles/${_id}`}>
-                        <div className="d-grid">
-                            <Button variant="dark" size="sm">Ver detalles</Button>
+                        <div className="mt-3 mb-3">
+                            <Button variant="dark" size="sm"><AddCircleIcon /></Button>
                         </div>
                     </Link>
 
@@ -66,10 +69,12 @@ const AssociationCard = ({ name, image, address, description, needs, children, _
                         owner?._id === user?._id &&
 
                         <>
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={deleteAssociation}>Borrar Asociación</Button>
+                            <div className="mt-3 mb-3">
+                                <Button variant="danger" size="sm" onClick={deleteAssociation}><DeleteForeverIcon /></Button>
                             </div>
-                            {user && <Button onClick={openModal} variant="dark" size="sm">editar Asociación</Button>}
+                            <div className="mt-3 mb-3">
+                                {user && <Button onClick={openModal} variant="dark" size="sm"><BorderColorIcon /></Button>}
+                            </div>
                         </>
                     }
                 </Card.Body>

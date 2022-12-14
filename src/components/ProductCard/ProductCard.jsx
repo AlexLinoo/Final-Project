@@ -10,6 +10,11 @@ import { AuthContext } from '../../contexts/auth.context'
 import { useEffect } from 'react'
 import associationService from '../../services/Association.service'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 
@@ -30,9 +35,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
         status
     }
 
-
-    const location = useLocation();
-    const { pathname } = location
     const [showModal, setShowModal] = useState(false)
 
 
@@ -48,7 +50,6 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
     }
     const [isAsosOwner, setIsAsosOwner] = useState(null)
     const [Association, setAssociation] = useState(null)
-    let donatedProducts = undefined
 
     const getAssociatons = () => {
 
@@ -126,40 +127,47 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
                     <Card.Text>Donado por : {owner?.username}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
-                    <Link to={`/productos/detalles/${_id}`}>
-                        <div className="d-grid">
-                            <Button variant="dark" size="sm">Ver detalles</Button>
-                        </div>
-                    </Link>
-                    {isAsosOwner &&
-                        <div className="d-grid mt-3">
-                            <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
-                        </div>
-
-                    }
-                    {
-                        !userFavs.includes(product._id) ?
-
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                    <div className="product-buttons">
+                        <Link to={`/productos/detalles/${_id}`}>
+                            <div className="">
+                                <Button variant="dark" size="sm"><AddCircleIcon /></Button>
                             </div>
-                            :
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
-                            </div>
-                    }
 
+                        </Link>
+                    </div>
+                    <div className='product-buttons mt-3'>
+                        {
+                            !userFavs.includes(product._id) ?
+
+
+                                <Button variant="danger" size="sm" onClick={likeProduct}><FavoriteBorderIcon /></Button>
+
+                                :
+
+                                <Button variant="danger" size="sm" onClick={unLikeProduct}><FavoriteIcon /></Button>
+
+                        }
+
+                        {isAsosOwner &&
+                            <div className="mt-3">
+                                <Button variant="success" size="sm" onClick={apply}><VolunteerActivismIcon /></Button>
+                            </div>
+
+                        }
+                    </div>
                     {
                         owner?._id === user?._id &&
 
                         <>
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
-                            </div>
-                            {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+                            <div className="product-buttons mt-3">
+                                {user && <Button onClick={openModal} variant="dark" size="sm"><BorderColorIcon /></Button>}
 
+                                <Button variant="danger" size="sm" onClick={deleteProduct}><DeleteForeverIcon /></Button>
+
+                            </div>
                         </>
                     }
+
                 </Card.Body>
             </Card>
             <Modal show={showModal} onHide={closeModal}>
@@ -172,7 +180,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
 
             </Modal>
 
-        </div>
+        </div >
     )
 }
 

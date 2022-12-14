@@ -3,6 +3,7 @@ import Card from 'react-bootstrap/Card'
 import { Link, useNavigate } from 'react-router-dom'
 import userService from '../../services/user.service'
 import './UserCard.css'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 
 const UserCard = ({ username, profileImage, _id }) => {
@@ -25,8 +26,8 @@ const UserCard = ({ username, profileImage, _id }) => {
                     <Card.Title>{username}</Card.Title>
 
                     <Link to={`/usuarios/perfil/${_id}`}>
-                        <div className="d-grid">
-                            <Button variant="dark" size="sm">Perfil</Button>
+                        <div className="">
+                            <Button variant="dark" size="sm"><AddCircleIcon /></Button>
                         </div>
                     </Link>
                 </Card.Body>

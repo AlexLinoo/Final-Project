@@ -3,7 +3,7 @@ import './Footer.css'
 const Footer = () => {
 
     return (
-        <footer>Alex Lino & Miguel Ángel García</footer>
+        <footer>Don_App - Alex Lino & Miguel Ángel García - 2022</footer>
     )
 }
 export default Footer

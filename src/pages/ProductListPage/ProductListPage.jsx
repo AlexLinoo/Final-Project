@@ -28,8 +28,9 @@ const ProductListPage = () => {
         productService
             .getProducts()
             .then(({ data }) => {
-                setFilteredProducts(data)
+                const offeredProducts = data.filter(elm => elm.status === 'offered');
                 setProducts(data)
+                setFilteredProducts(offeredProducts)
             })
             .catch(err => console.log(err))
     }
@@ -68,10 +69,10 @@ const ProductListPage = () => {
         <>
 
             <Container>
-                <h1>Lista de productos</h1>
+                <h1><strong>Lista de Productos</strong></h1>
                 <br />
 
-                {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
+                {user && <Button onClick={openModal} variant="dark" size="lg">Donar</Button>}
                 <hr />
                 <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary">Todos los Productos</Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">Juguetes</Button>

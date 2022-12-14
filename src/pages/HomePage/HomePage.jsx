@@ -1,15 +1,21 @@
 import './Homepage.css'
 
-import { Container } from "react-bootstrap"
-
+import { Container, Button } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
     return (
-        <Container className="homepage-box">
-            <h2>Tu pagina de donaciones</h2>
-            <hr />
-            <h4>Realiza una donación hoy o sube un producto que quieras donar para que sea reclamado por diferentes asociaciones</h4>
-        </Container>
+        <>
+
+            < div className='background'>
+                <h1 className='titleHomePage'><strong>Tu página de donaciones</strong></h1>
+                <div className='divEmpieza'>
+                    <Link to='/productos'>
+                        <Button variant="light" className='empiezaBtn' size='lg'>Empieza a donar</Button>
+                    </Link>
+                </div>
+            </div >
+        </>
     )
 }
 export default HomePage

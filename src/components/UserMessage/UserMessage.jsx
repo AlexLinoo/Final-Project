@@ -11,7 +11,7 @@ const UserMessage = () => {
 
         <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide style={{ position: 'fixed', bottom: 50, right: 10 }}>
             <Toast.Header>
-                <strong className="me-auto">Mensaje</strong>
+                <strong className="me-auto">Hey!</strong>
             </Toast.Header>
             <Toast.Body>{toastMessage}</Toast.Body>
         </Toast>

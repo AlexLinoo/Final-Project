@@ -7,6 +7,7 @@ import productService from "../../services/Product.service";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from '../../components/Loader/Loader'
 import userService from "../../services/user.service";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
@@ -89,7 +90,7 @@ const ProfilePage = () => {
                             </ListGroup>
                             <Card.Body>
                                 <div className="d-grid mt-3">
-                                    <Button variant="danger" size="sm" onClick={deleteUser}>Borrar Perfil</Button>
+                                    <Button variant="danger" size="sm" onClick={deleteUser}><DeleteForeverIcon /></Button>
                                 </div>
                             </Card.Body>
                         </Card>
