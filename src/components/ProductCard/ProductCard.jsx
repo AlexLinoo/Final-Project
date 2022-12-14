@@ -17,7 +17,6 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 const ProductCard = ({ name, image, description, _id, type, state, owner, status, refreshProducts }) => {
 
     const [userFavs, setUserFavs] = useState([])
-
     const { user } = useContext(AuthContext)
 
     const product = {
@@ -28,14 +27,13 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
         type,
         state,
         owner,
-        status,
+        status
     }
 
 
     const location = useLocation();
     const { pathname } = location
     const [showModal, setShowModal] = useState(false)
-    const [Status, setStatus] = useState({})
 
 
     const openModal = () => setShowModal(true)
@@ -58,9 +56,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
             .getAssociatons()
             .then(({ data }) => {
                 let AsosOwners = data.map(el => {
-                    return ({
-                        owner: el.owner._id, id: el._id, donated: el.donated
-                    })
+                    return ({ owner: el.owner._id, id: el._id, donated: el.donated })
                 })
 
                 AsosOwners.some(elm => {
@@ -80,9 +76,10 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
 
     const apply = () => {
         productService
-            .applyForProduct(_id, isAsosOwner.id)
+            .applyForProduct(_id, isAsosOwner)
             .then(() => {
                 fireFinalActions()
+
             })
             .catch(err => (err))
     }
@@ -123,66 +120,62 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
     }, [])
 
     return (
-        <>
-            {pathname === '/productos' && !isAsosOwner?.donated.includes(_id) &&
-                < div key={_id} >
-                    <Card className='mb-4 ProductCard'>
-                        <Card.Img variant="top" src={image} alt="producto" />
-                        <Card.Body>
-                            <Card.Title>{name}</Card.Title>
-                            <Card.Text>Donado por : {owner?.username}</Card.Text>
-                            <Card.Text>Tipo: {type}</Card.Text>
-                            <Card.Text>Estado: {state}</Card.Text>
-                            <Link to={`/productos/detalles/${_id}`}>
-                                <div className="d-grid">
-                                    <Button variant="dark" size="sm">Ver detalles</Button>
-                                </div>
-                            </Link>
-                            {isAsosOwner &&
-                                <div className="d-grid mt-3">
-                                    <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
-                                </div>
-                            }
-                            {
-                                !userFavs.includes(product._id) ?
 
-                                    <div className="d-grid mt-3">
-                                        <Button variant="danger" size="sm" onClick={likeProduct}><FavoriteBorderIcon /></Button>
-                                    </div>
-                                    :
-                                    <div className="d-grid mt-3">
-                                        <Button variant="danger" size="sm" onClick={unLikeProduct}>❤️️</Button>
-                                    </div>
-                            }
+        <div key={_id}>
+            <Card className="mb-4 ProductCard">
+                <Card.Img variant="top" src={image} alt="producto" />
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>Donado por : {owner?.username}</Card.Text>
+                    <Card.Text>Tipo: {type}</Card.Text>
+                    <Card.Text>Estado: {state}</Card.Text>
+                    <Link to={`/productos/detalles/${_id}`}>
+                        <div className="d-grid">
+                            <Button variant="dark" size="sm">Ver detalles</Button>
+                        </div>
+                    </Link>
+                    {isAsosOwner &&
+                        <div className="d-grid mt-3">
+                            <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
+                        </div>
 
-                            {
-                                owner?._id === user?._id &&
+                    }
+                    {
+                        !userFavs.includes(product._id) ?
 
-                                <>
-                                    <div className="d-grid mt-3">
-                                        <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
-                                    </div>
-                                    {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                            </div>
+                            :
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
+                            </div>
+                    }
 
-                                </>
-                            }
-                        </Card.Body>
-                    </Card>
-                </div >
-            }
-            < div >
-                <Modal show={showModal} onHide={closeModal}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Modal heading</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <EditProductForm fireFinalActions={fireFinalActions} product={{ name, image, description, _id, type, state, owner }} />
-                    </Modal.Body>
+                    {
+                        owner?._id === user?._id &&
 
-                </Modal>
+                        <>
+                            <div className="d-grid mt-3">
+                                <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
+                            </div>
+                            {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
 
-            </div >
-        </>
+                        </>
+                    }
+                </Card.Body>
+            </Card>
+            <Modal show={showModal} onHide={closeModal}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Modal heading</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <EditProductForm fireFinalActions={fireFinalActions} product={{ name, image, description, _id, type, state, owner }} />
+                </Modal.Body>
+
+            </Modal>
+
+        </div>
     )
 }
 
