@@ -62,10 +62,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
                 AsosOwners.some(elm => {
 
                     if (elm.owner === user._id) {
-                        setIsAsosOwner({
-                            id: elm.id,
-                            donated: elm.donated
-                        })
+                        setIsAsosOwner(elm.id)
 
                     }
                 })
