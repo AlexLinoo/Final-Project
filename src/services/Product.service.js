@@ -60,7 +60,8 @@ class ProductService {
         return this.api.get('/getFavProduct')
     }
 
-    applyForProduct(product_id, association_id) {
+    applyForProduct(product_id, association_id,) {
+        console.log('que me llegas aqui guarro??', association_id)
         return this.api.put(`/applyForProduct/${association_id}`, { donated: product_id })
     }
 
