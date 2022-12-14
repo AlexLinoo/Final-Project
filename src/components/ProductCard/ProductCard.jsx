@@ -13,10 +13,9 @@ import associationService from '../../services/Association.service'
 
 
 
-const ProductCard = ({ name, image, description, _id, type, state, owner, refreshProducts }) => {
+const ProductCard = ({ name, image, description, _id, type, state, owner, status, refreshProducts }) => {
 
     const [userFavs, setUserFavs] = useState([])
-
     const { user } = useContext(AuthContext)
 
     const product = {
@@ -26,13 +25,13 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
         _id,
         type,
         state,
-        owner
+        status
     }
 
 
 
     const [showModal, setShowModal] = useState(false)
-    const [Association, setAssociation] = useState()
+
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
@@ -51,7 +50,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
             .getAssociatons()
             .then(({ data }) => {
                 let AsosOwners = data.map(el => {
-                    return ({ owner: el.owner._id, id: el._id })
+                    return ({ owner: el.owner._id, id: el._id, donated: el.donated })
                 })
 
                 AsosOwners.some(elm => {
@@ -68,7 +67,10 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
     const apply = () => {
         productService
             .applyForProduct(_id, isAsosOwner)
-            .then(() => fireFinalActions())
+            .then(() => {
+                fireFinalActions()
+
+            })
             .catch(err => (err))
     }
 
@@ -126,6 +128,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                         <div className="d-grid mt-3">
                             <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
                         </div>
+
                     }
                     {
                         !userFavs.includes(product._id) ?
