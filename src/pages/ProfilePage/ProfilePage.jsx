@@ -7,6 +7,7 @@ import ProductList from "../../components/ProductList/ProductList";
 import Loader from '../../components/Loader/Loader'
 import userService from "../../services/user.service";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import EmailIcon from '@mui/icons-material/Email';
 import './ProfilePage.css'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
@@ -74,33 +75,35 @@ const ProfilePage = () => {
 
     return (
         <>
-            <h1>Tu Perfil</h1>
-            <Container>
-                <Row>
-                    <Col>
 
-                        <Card style={{ width: '40rem' }}>
-                            <Card.Img variant="top" src={profileImage} />
-                            <Card.Body>
-                                <Card.Title>{username}</Card.Title>
-                            </Card.Body>
-                            <Card.Text>{email}</Card.Text>
-                            <Card.Body>
-                                <div>
-                                    <Button variant="danger" className="delete" size="lg" onClick={deleteUser}><DeleteForeverIcon /></Button>
-                                </div>
-                            </Card.Body>
-                        </Card>
-                        <div className="mt-5">
-                            {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadUserProducts} />}
+            <Container>
+
+
+                <Row>
+
+
+                    <Col md={{ span: 2 }} className="profile">
+                        <div className="mt-3">
+                            <h1 className="yourProfile" >Tu Perfil</h1>
+                            <img className="profileImage" src={profileImage} alt="" />
+                            <h3>{username}</h3>
+                            <p className="email"><EmailIcon /> {email}</p>
+                            <div className="div-delete">
+                                <Button variant="danger" className="delete" size="lg" onClick={deleteUser}><DeleteForeverIcon sx={{ fontSize: 30 }} />Borrar tu perfil</Button>
+                            </div>
                         </div>
                     </Col>
-                    <Col>
-                        <h1>Favoritos</h1>
+                    <Col md={{ span: 5, offset: 2 }}>
+                        <h1 className="favourite">Favoritos</h1>
 
-                        {!favProducts ? <Loader /> : <ProductList products={favProducts} refreshProducts={getUserFavs} />}
+                        {!favProducts ? <Loader /> : <ProductList classname products={favProducts} refreshProducts={getUserFavs} />}
                     </Col>
                 </Row>
+                <h2 className="yourProducts">Tus Productos</h2>
+
+                <div>
+                    {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadUserProducts} />}
+                </div>
             </Container>
         </>
     )

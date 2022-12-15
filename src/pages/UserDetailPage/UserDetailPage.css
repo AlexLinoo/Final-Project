@@ -1,0 +1,18 @@
+.userPic {
+    border-radius: 50%
+}
+
+.userHeader {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.userProductsTitle {
+    font-size: 3em;
+}
+
+.imageDoning {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
