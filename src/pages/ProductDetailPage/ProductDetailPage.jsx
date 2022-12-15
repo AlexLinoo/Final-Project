@@ -1,9 +1,10 @@
 import productService from "../../services/Product.service"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Container, Row, Col, Button } from "react-bootstrap"
+import { Container, Row, Col, Button, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import Loader from "../../components/Loader/Loader"
+import { Avatar } from '@nextui-org/react'
 
 
 
@@ -38,13 +39,53 @@ const ProductDetailPage = () => {
 
     return (
 
+
         <Container>
 
 
-            <h1 className="mb-4">Detalles de {name}</h1>
-            <hr />
+
+            <h1 className="mb-4">{name}</h1>
 
             <Row>
+
+
+                <Col md={{ span: 6, offset: 1 }}>
+                    <Card className="asosDetail" style={{ width: '35rem' }}>
+
+                        <Card.Body>
+                            <Card.Title>Donado por: <Link to={`/usuarios/perfil/${owner._id}`}>{owner.username}</Link> </Card.Title>
+                            <Avatar className='avatar'
+                                src={owner.profileImage}
+                                size="lg"
+                            />
+                            <Card.Title className='mt-2'>{description}</Card.Title>
+                            <hr />
+                            <Card.Title>Tipo:</Card.Title>
+                            <Card.Text>{type}</Card.Text>
+                            <Card.Title>Estado:</Card.Title>
+                            <Card.Text>{state}</Card.Text>
+                        </Card.Body>
+
+                    </Card>
+                </Col>
+
+                <Col md={{ span: 4 }}>
+                    <img className="asosDetailImage" src={image} style={{ width: '100%' }} />
+                </Col>
+
+            </Row>
+            <div className="mt-5 back p-5">
+                <Link to="/productoo" >
+                    <Button as="div" className="p-3" variant="outline-dark">Volver a Productos</Button>
+                </Link>
+            </div>
+
+
+
+            {/* <h1 className="mb-4">Detalles de {name}</h1>
+            <hr /> */}
+
+            {/* <Row>
 
                 <Col md={{ span: 6, offset: 1 }}>
                     <h3>Donado por: <Link to={`/usuarios/perfil/${owner._id}`}>{owner.username}</Link></h3>
@@ -53,9 +94,7 @@ const ProductDetailPage = () => {
                     <p>{state}</p>
                     <hr />
 
-                    <Link to="/productos">
-                        <Button as="div" variant="dark">Volver a la lista </Button>
-                    </Link>
+                   
 
                 </Col>
 
@@ -63,7 +102,7 @@ const ProductDetailPage = () => {
                     <img src={image} style={{ width: '100%' }} />
                 </Col>
 
-            </Row>
+            </Row> */}
 
 
         </Container>

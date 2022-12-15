@@ -1,11 +1,13 @@
+import './UserDetailPage.css'
 import userService from "../../services/user.service"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { Container, Row, Col, Button } from "react-bootstrap"
-
+import { Container, Row, Col, Button, Card } from "react-bootstrap"
+import EmailIcon from '@mui/icons-material/Email';
 import productService from "../../services/Product.service"
 import ProductList from "../../components/ProductList/ProductList"
 import Loader from "../../components/Loader/Loader"
+
 
 
 const UserDetailPage = () => {
@@ -48,35 +50,38 @@ const UserDetailPage = () => {
                     <Loader />
                     :
                     <>
-                        <h1 className="mb-4">Peril de {username}</h1>
-                        <hr />
-
                         <Row>
 
-                            <Col md={{ span: 6, offset: 1 }}>
-                                <p>email: {email}</p>
-                                <hr />
-
-                                {/* <Link to="/">
-                                    <Button as="div" variant="dark">Volver Inicio</Button>
-                                </Link> */}
-                            </Col>
-
                             <Col md={{ span: 4 }}>
-                                <img src={profileImage} style={{ width: '100%' }} />
+                                <img src={profileImage} className="userPic mb-3 mt-3" style={{ width: '50%' }} />
+
+                                <Card>
+                                    <Card.Header>{username}</Card.Header>
+                                    <Card.Body>
+                                        <Card.Text>
+                                            <EmailIcon /> {email}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+
                             </Col>
-                            <hr />
-                            <h1>Productos de {username}</h1>
+                            <Col md={{ span: 6, offset: 1 }} className='imageDoning'>
+                                <img src='https://img.freepik.com/free-vector/illustration-donation-support-icons_53876-6149.jpg?w=2000' alt="hola" />
+
+                            </Col>
+
+                            <hr className='mt-4' />
+                            <h1 className='userProductsTitle'>Productos de {username}</h1>
 
                             <br />
-                            <div className="mt-5">
+                            <div className="mt-2">
                                 {!products ? <Loader /> : <ProductList products={products} refreshProducts={loadUserProducts} />}
                             </div>
                         </Row>
                     </>
             }
 
-        </Container>
+        </Container >
     )
 }
 

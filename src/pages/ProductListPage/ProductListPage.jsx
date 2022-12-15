@@ -75,12 +75,12 @@ const ProductListPage = () => {
 
             <Container>
 
-                {user && <Button onClick={openModal} variant="dark" size="lg">Donar</Button>}
-                <hr />
+                {user && <Button onClick={openModal} className="done-button" variant="outline-dark" size="lg">Donar</Button>}
+
                 <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryIcon /></Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success"><ToysIcon /></Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolIcon /></Button>
+                <Button className="schoolButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolIcon /></Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon /></Button>
 
                 {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
