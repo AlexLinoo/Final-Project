@@ -8,6 +8,7 @@ import Avatar from '@mui/material/Avatar';
 import userService from '../../services/user.service'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Logo from '../../images/logo.png'
 
 
 
@@ -32,7 +33,7 @@ const Navigation = () => {
         <Navbar bg="dark" expand="md" variant="dark">
             <Container>
                 <Link to="/">
-                    <Navbar.Brand as="div">Don_App</Navbar.Brand>
+                    <Navbar.Brand as="div"><img className='logo' src={Logo} /></Navbar.Brand>
                 </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

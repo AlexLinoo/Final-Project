@@ -5,3 +5,8 @@ a {
 .welcome {
     margin-left: 525px;
 }
+
+.logo {
+    height: 40px;
+    width: 40px;
+}

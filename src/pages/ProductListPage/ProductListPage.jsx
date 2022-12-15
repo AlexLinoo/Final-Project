@@ -8,16 +8,10 @@ import { AuthContext } from "../../contexts/auth.context"
 import './ProductListPage.css'
 import Loader from "../../components/Loader/Loader"
 import AddIcon from '@mui/icons-material/Add';
-import ToysIcon from '@mui/icons-material/Toys';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
-import SchoolIcon from '@mui/icons-material/School';
-import CategoryIcon from '@mui/icons-material/Category';
 import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ToysOutlinedIcon from '@mui/icons-material/ToysOutlined';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
@@ -60,15 +54,17 @@ const ProductListPage = () => {
     }
 
 
-    const handleFilterButton = (e) => {
+    const handleFilterButton = (value) => {
 
-
-        if (e.target.value === 'all') {
-            setFilteredProducts(filteredProducts)
+        if (value === 'all') {
+            const offeredProduct = products.filter(el => el.status === 'offered')
+            setFilteredProducts(offeredProduct)
         } else {
-            const productCopy = products.filter(elm => elm.type === e.target.value && elm.status === 'offered')
+            const productCopy = products.filter(elm => elm.type === value && elm.status === 'offered')
+            console.log(productCopy)
             setFilteredProducts(productCopy)
         }
+
     }
 
     useEffect(() => {
@@ -82,14 +78,17 @@ const ProductListPage = () => {
         <>
 
             <Container>
+                {/*     <div className="productTitle">
+                    <p>Encuentra aquí todos los productos donados por los usuarios</p>
+                </div> */}
 
                 {user && <Button onClick={openModal} className="done-button" variant="outline-dark" size="lg">Donar</Button>}
 
-                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">< ToysOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon sx={{ fontSize: 70 }} /></Button>
+                <CategoryOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('all')} />
+                <ToysOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Juguetes')} />
+                <CheckroomIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Ropa')} />
+                <SchoolOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Material Escolar')} />
+                <AddIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Otros')} />
 
                 {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 

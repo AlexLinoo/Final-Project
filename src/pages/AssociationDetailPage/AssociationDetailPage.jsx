@@ -66,24 +66,6 @@ const AssociationDetailPage = () => {
 
 
                 <Col md={{ span: 6, offset: 1 }}>
-<<<<<<< HEAD
-                    <h3>Especificaciones</h3>
-                    <p>Persona de contacto: <Link to={`/usuarios/perfil/${owner._id}`}>{owner.username}</Link></p>
-                    <p>email: {owner.email}</p>
-                    <img src={owner.profileImage} alt="" />
-                    <p>{description}</p>
-                    {needs.ropa && <Card.Text>ropa</Card.Text>}
-                    {needs.juguetes && <Card.Text>juguetes</Card.Text>}
-                    {needs.material_escolar && <Card.Text>material escolar</Card.Text>}
-                    {needs.otros && <Card.Text>otros</Card.Text>}
-                    <p>Niños: {children}</p>
-                    <p>Dirección: {address}</p>
-                    <hr />
-
-                    <Link to="/productos">
-                        <Button as="div" variant="dark">Volver a la lista </Button>
-                    </Link>
-=======
                     <Card className="asosDetail" style={{ width: '35rem' }}>
 
                         <Card.Body>
@@ -106,7 +88,6 @@ const AssociationDetailPage = () => {
                             <ListGroup.Item>Otros {needs.otros && <CheckBoxIcon />}</ListGroup.Item>
                         </ListGroup>
                     </Card>
->>>>>>> 116a9c2a56a9f103393b0345ef7ef57b0cc5c3a2
                 </Col>
 
                 <Col md={{ span: 4 }}>
