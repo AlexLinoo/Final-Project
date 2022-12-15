@@ -60,20 +60,21 @@ const ProductListPage = () => {
     }
 
 
-    const handleFilterButton = (e) => {
+    const handleFilterButton = (value) => {
 
-
-        if (e.target.value === 'all') {
-            setFilteredProducts(filteredProducts)
+        if (value === 'all') {
+            const offeredProduct = products.filter(el => el.status === 'offered')
+            setFilteredProducts(offeredProduct)
         } else {
-            const productCopy = products.filter(elm => elm.type === e.target.value && elm.status === 'offered')
+            const productCopy = products.filter(elm => elm.type === value && elm.status === 'offered')
+            console.log(productCopy)
             setFilteredProducts(productCopy)
         }
     }
 
     useEffect(() => {
 
-        loadProducts()
+        loadProducts(filteredProducts)
 
     }, [])
 
@@ -85,11 +86,12 @@ const ProductListPage = () => {
 
                 {user && <Button onClick={openModal} className="done-button" variant="outline-dark" size="lg">Donar</Button>}
 
-                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">< ToysOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolOutlinedIcon sx={{ fontSize: 70 }} /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon sx={{ fontSize: 70 }} /></Button>
+                <CategoryOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('all')} />
+                <ToysOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Juguetes')} />
+                <CheckroomIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Ropa')} />
+                <SchoolOutlinedIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Material Escolar')} />
+                <AddIcon className="filterButton" sx={{ fontSize: 150 }} onClick={() => handleFilterButton('Otros')} />
+
 
                 {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 

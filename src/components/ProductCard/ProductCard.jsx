@@ -125,57 +125,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
 
     return (
 
-        <div /* key={_id} */>
-            {/*       <Card className="mb-4 ProductCard">
-                <Card.Img variant="top" src={image} alt="producto" />
-                <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <Card.Text>Donado por : {owner?.username}</Card.Text>
-                    <Card.Text>Tipo: {type}</Card.Text>
-                    <Card.Text>Estado: {state}</Card.Text>
-                    <div className="product-buttons">
-                        <Link to={`/productos/detalles/${_id}`}>
-                            <div className="">
-                                <Button variant="dark" size="sm"><AddCircleIcon /></Button>
-                            </div>
-
-                        </Link>
-                    </div>
-                    <div className='product-buttons mt-3'>
-                        {
-                            !userFavs.includes(product._id) ?
-
-
-                                <Button variant="danger" size="sm" onClick={likeProduct}><FavoriteBorderIcon /></Button>
-
-                                :
-
-                                <Button variant="danger" size="sm" onClick={unLikeProduct}><FavoriteIcon /></Button>
-
-                        }
-
-                        {isAsosOwner &&
-                            <div className="mt-3">
-                                <Button variant="success" size="sm" onClick={apply}><VolunteerActivismIcon /></Button>
-                            </div>
-
-                        }
-                    </div>
-                    {
-                        owner?._id === user?._id &&
-
-                        <>
-                            <div className="product-buttons mt-3">
-                                {user && <Button onClick={openModal} variant="dark" size="sm"><BorderColorIcon /></Button>}
-
-                                <Button variant="danger" size="sm" onClick={deleteProduct}><DeleteForeverIcon /></Button>
-
-                            </div>
-                        </>
-                    }
-
-                </Card.Body>
-            </Card> */}
+        <div>
             <Grid.Container gap={2} justify="flex-start">
 
                 <Grid key={_id}>
@@ -188,7 +138,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
                                 height={300}
                                 alt="product"
                             />
-                            <Text b>{name}</Text>
+                            <Text >{name}</Text>
                         </Card.Body>
                         <Card.Footer css={{ justifyItems: "flex-start" }}>
                             <Row wrap="wrap" justify="space-between" align="center">

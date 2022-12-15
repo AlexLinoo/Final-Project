@@ -53,7 +53,7 @@ const UserDetailPage = () => {
                         <Row>
 
                             <Col md={{ span: 4 }}>
-                                <img src={profileImage} className="userPic mb-3 mt-3" style={{ width: '50%' }} />
+                                <img src={profileImage} className="userPic mb-5 mt-5" style={{ width: '50%' }} />
 
                                 <Card>
                                     <Card.Header>{username}</Card.Header>

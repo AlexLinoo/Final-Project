@@ -81,9 +81,9 @@ const NewProductForm = ({ fireFinalActions }) => {
             </Row>
             <Row>
                 <Col>
-                    <InputGroup className="mb-3" onChange={handleInputChange}>
-                        <InputGroup.Radio aria-label="Radio for following text input" name="state" value='Nuevo' /><h5>Nuevo</h5>
-                        <InputGroup.Radio aria-label="Radio for following text input" name="state" value='Semi-Nuevo' /><h5>Semi-Nuevo</h5>
+                    <InputGroup className="mb-3 checkboxArea" onChange={handleInputChange}>
+                        <InputGroup.Radio className="ml-1" aria-label="Radio for following text input" name="state" value='Nuevo' /><h5 className="mt-1">Nuevo</h5>
+                        <InputGroup.Radio className="ml-1" aria-label="Radio for following text input" name="state" value='Semi-Nuevo' /><h5 className="mt-1">Semi-Nuevo</h5>
                     </InputGroup>
                 </Col>
             </Row>
