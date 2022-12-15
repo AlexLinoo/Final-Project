@@ -4,6 +4,10 @@ import { Nav, Container, Navbar, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../contexts/auth.context'
 import { useContext } from 'react'
+import Avatar from '@mui/material/Avatar';
+import userService from '../../services/user.service'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 
 
@@ -12,11 +16,20 @@ import { useContext } from 'react'
 
 const Navigation = () => {
 
+
     const { user, logoutUser } = useContext(AuthContext)
+
+
+
+    useEffect(() => {
+
+
+
+    }, [])
 
     return (
 
-        <Navbar bg="dark" expand="md" variant="dark" className="mb-5">
+        <Navbar bg="dark" expand="md" variant="dark">
             <Container>
                 <Link to="/">
                     <Navbar.Brand as="div">Don_App</Navbar.Brand>

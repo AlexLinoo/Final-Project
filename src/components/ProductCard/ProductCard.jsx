@@ -41,13 +41,12 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
         status
     }
 
-
-
     const [showModal, setShowModal] = useState(false)
 
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
+
 
     const likeProduct = () => {
         productService
@@ -56,6 +55,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
             .catch(err => (err))
     }
     const [isAsosOwner, setIsAsosOwner] = useState(null)
+    const [Association, setAssociation] = useState(null)
 
     const getAssociatons = () => {
 
@@ -70,6 +70,7 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
 
                     if (elm.owner === user._id) {
                         setIsAsosOwner(elm.id)
+
                     }
                 })
             })
@@ -132,40 +133,47 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, status
                     <Card.Text>Donado por : {owner?.username}</Card.Text>
                     <Card.Text>Tipo: {type}</Card.Text>
                     <Card.Text>Estado: {state}</Card.Text>
-                    <Link to={`/productos/detalles/${_id}`}>
-                        <div className="d-grid">
-                            <Button variant="dark" size="sm">Ver detalles</Button>
-                        </div>
-                    </Link>
-                    {isAsosOwner &&
-                        <div className="d-grid mt-3">
-                            <Button variant="success" size="sm" onClick={apply}>Solicitar</Button>
-                        </div>
-
-                    }
-                    {
-                        !userFavs.includes(product._id) ?
-
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={likeProduct}>☆</Button>
+                    <div className="product-buttons">
+                        <Link to={`/productos/detalles/${_id}`}>
+                            <div className="">
+                                <Button variant="dark" size="sm"><AddCircleIcon /></Button>
                             </div>
-                            :
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={unLikeProduct}>★</Button>
-                            </div>
-                    }
 
+                        </Link>
+                    </div>
+                    <div className='product-buttons mt-3'>
+                        {
+                            !userFavs.includes(product._id) ?
+
+
+                                <Button variant="danger" size="sm" onClick={likeProduct}><FavoriteBorderIcon /></Button>
+
+                                :
+
+                                <Button variant="danger" size="sm" onClick={unLikeProduct}><FavoriteIcon /></Button>
+
+                        }
+
+                        {isAsosOwner &&
+                            <div className="mt-3">
+                                <Button variant="success" size="sm" onClick={apply}><VolunteerActivismIcon /></Button>
+                            </div>
+
+                        }
+                    </div>
                     {
                         owner?._id === user?._id &&
 
                         <>
-                            <div className="d-grid mt-3">
-                                <Button variant="danger" size="sm" onClick={deleteProduct}>Borrar Producto</Button>
-                            </div>
-                            {user && <Button onClick={openModal} variant="dark" size="sm">editar Nuevo Producto</Button>}
+                            <div className="product-buttons mt-3">
+                                {user && <Button onClick={openModal} variant="dark" size="sm"><BorderColorIcon /></Button>}
 
+                                <Button variant="danger" size="sm" onClick={deleteProduct}><DeleteForeverIcon /></Button>
+
+                            </div>
                         </>
                     }
+
                 </Card.Body>
             </Card> */}
             <Grid.Container gap={2} justify="flex-start">

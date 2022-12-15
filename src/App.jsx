@@ -13,15 +13,8 @@ const App = () => {
         <div className='App pb-5'>
 
             <Navigation />
-
-            <Container>
-
-                <AppRoutes />
-
-                <UserMessage />
-
-            </Container>
-
+            <AppRoutes />
+            <UserMessage />
             <Footer />
 
         </div>

@@ -35,8 +35,9 @@ const ProductListPage = () => {
         productService
             .getProducts()
             .then(({ data }) => {
-                setFilteredProducts(data)
+                const offeredProducts = data.filter(elm => elm.status === 'offered');
                 setProducts(data)
+                setFilteredProducts(offeredProducts)
             })
             .catch(err => console.log(err))
     }
@@ -55,13 +56,11 @@ const ProductListPage = () => {
 
 
         if (e.target.value === 'all') {
-            setFilteredProducts(products)
+            setFilteredProducts(filteredProducts)
         } else {
-            const productCopy = products.filter(elm => elm.type === e.target.value)
+            const productCopy = products.filter(elm => elm.type === e.target.value && elm.status === 'offered')
             setFilteredProducts(productCopy)
         }
-
-
     }
 
     useEffect(() => {
@@ -76,8 +75,7 @@ const ProductListPage = () => {
 
             <Container>
 
-
-                {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
+                {user && <Button onClick={openModal} variant="dark" size="lg">Donar</Button>}
                 <hr />
                 <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryIcon /></Button>
                 <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success"><ToysIcon /></Button>

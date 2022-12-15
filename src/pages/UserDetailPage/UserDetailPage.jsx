@@ -2,7 +2,7 @@ import userService from "../../services/user.service"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { Container, Row, Col, Button } from "react-bootstrap"
-import { Link } from "react-router-dom"
+
 import productService from "../../services/Product.service"
 import ProductList from "../../components/ProductList/ProductList"
 import Loader from "../../components/Loader/Loader"
@@ -19,17 +19,20 @@ const UserDetailPage = () => {
 
         productService
 
-            .getUserProducts()
-            .then(({ data }) => setProducts(data))
+            .getOneUserProducts(user_id)
+            .then(({ data }) => {
+                setProducts(data)
+                console.log(data)
+            })
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
-        loadUserProducts()
         userService
             .getOneUser(user_id)
             .then(({ data }) => setUsers(data))
             .catch(err => console.log(err))
+        loadUserProducts()
 
     }, [])
 

@@ -49,13 +49,9 @@ const AssociationDetailPage = () => {
     }
 
     const { name, description, image, address, needs, children, owner, donated } = association
-<<<<<<< HEAD
 
     const donations = donated.map(elm => elm)
-=======
->>>>>>> miguel
 
-    const donations = donated.map(elm => elm)
 
     return (
 
