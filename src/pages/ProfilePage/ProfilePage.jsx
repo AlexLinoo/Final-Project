@@ -1,13 +1,13 @@
 import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/auth.context"
 import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { useNavigate } from "react-router-dom";
 import productService from "../../services/Product.service";
 import ProductList from "../../components/ProductList/ProductList";
 import Loader from '../../components/Loader/Loader'
 import userService from "../../services/user.service";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import './ProfilePage.css'
 import { Container, Row, Col, Button } from 'react-bootstrap'
 
 
@@ -79,18 +79,15 @@ const ProfilePage = () => {
                 <Row>
                     <Col>
 
-                        <Card style={{ width: '18rem' }}>
+                        <Card style={{ width: '40rem' }}>
                             <Card.Img variant="top" src={profileImage} />
                             <Card.Body>
                                 <Card.Title>{username}</Card.Title>
                             </Card.Body>
-                            <ListGroup className="list-group-flush">
-                                <ListGroup.Item>{email}</ListGroup.Item>
-                                <ListGroup.Item></ListGroup.Item>
-                            </ListGroup>
+                            <Card.Text>{email}</Card.Text>
                             <Card.Body>
-                                <div className="d-grid mt-3">
-                                    <Button variant="danger" size="sm" onClick={deleteUser}><DeleteForeverIcon /></Button>
+                                <div>
+                                    <Button variant="danger" className="delete" size="lg" onClick={deleteUser}><DeleteForeverIcon /></Button>
                                 </div>
                             </Card.Body>
                         </Card>

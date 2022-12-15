@@ -49,13 +49,11 @@ const ProductListPage = () => {
 
 
         if (e.target.value === 'all') {
-            setFilteredProducts(products)
+            setFilteredProducts(filteredProducts)
         } else {
-            const productCopy = products.filter(elm => elm.type === e.target.value)
+            const productCopy = products.filter(elm => elm.type === e.target.value && elm.status === 'offered')
             setFilteredProducts(productCopy)
         }
-
-
     }
 
     useEffect(() => {
