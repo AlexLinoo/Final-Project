@@ -23,8 +23,8 @@ const UserListPage = () => {
 
         <Container>
 
-            <h1>Lista de Usuarios</h1>
-            <hr />
+            <h1 className="mb-4 mt-3">Lista de Usuarios</h1>
+
 
             {!users ? <h1>Cargando usuarios...</h1> : <UserList users={users} />}
 

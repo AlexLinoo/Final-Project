@@ -69,7 +69,7 @@ const ProductListPage = () => {
 
     useEffect(() => {
 
-        loadProducts()
+        loadProducts(filteredProducts)
 
     }, [])
 

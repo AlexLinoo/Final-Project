@@ -75,7 +75,7 @@ const ProductDetailPage = () => {
 
             </Row>
             <div className="mt-5 back p-5">
-                <Link to="/productoo" >
+                <Link to="/productos" >
                     <Button as="div" className="p-3" variant="outline-dark">Volver a Productos</Button>
                 </Link>
             </div>

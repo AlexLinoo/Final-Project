@@ -1,6 +1,7 @@
 import { Col, Row } from "react-bootstrap"
 import UserCard from "../UserCard/UserCard"
 
+
 const UserList = ({ users }) => {
 
     return (

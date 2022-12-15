@@ -48,7 +48,7 @@ const AssociationListPage = () => {
             <Container>
                 <div className="display">
                     <h1>Asociaciones</h1>
-                    {user && <Button className='buttonCenter' onClick={openModal} variant="dark" size="sm">Crear Nuevo Centro</Button>}
+                    {user && <Button className='buttonCenter' onClick={openModal} variant="outline-dark" size="sm">Registra tu Asociación</Button>}
                 </div>
                 <br />
 

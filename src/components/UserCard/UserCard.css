@@ -2,6 +2,10 @@
     box-shadow: 0px 0px 15px grey;
 }
 
+.UserCard:hover {
+    transform: scale(1.05)
+}
+
 .ProductCard img {
     height: 150px;
     object-fit: cover;

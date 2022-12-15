@@ -78,28 +78,31 @@ const ProfilePage = () => {
 
             <Container>
 
+                <h1 className="yourProfile" >Tu Perfil</h1>
 
                 <Row>
 
 
-                    <Col md={{ span: 2 }} className="profile">
-                        <div className="mt-3">
-                            <h1 className="yourProfile" >Tu Perfil</h1>
-                            <img className="profileImage" src={profileImage} alt="" />
-                            <h3>{username}</h3>
-                            <p className="email"><EmailIcon /> {email}</p>
-                            <div className="div-delete">
-                                <Button variant="danger" className="delete" size="lg" onClick={deleteUser}><DeleteForeverIcon sx={{ fontSize: 30 }} />Borrar tu perfil</Button>
+                    <Row md={{ span: 2 }} className="profile">
+                        <Col className="profiletab">
+                            <div className="mt-3">
+                                <img className="profileImage" src={profileImage} alt="" />
+                                <h3 className="username">{username}</h3>
                             </div>
-                        </div>
-                    </Col>
-                    <Col md={{ span: 5, offset: 2 }}>
-                        <h1 className="favourite">Favoritos</h1>
+                        </Col>
+                        <Col className="infoCol">
+                            <p className="email"><EmailIcon /> {email}</p>
+                            <Button variant="danger" className="delete" size="lg" onClick={deleteUser}><DeleteForeverIcon sx={{ fontSize: 30 }} />Borrar tu perfil</Button>
+                        </Col>
 
-                        {!favProducts ? <Loader /> : <ProductList classname products={favProducts} refreshProducts={getUserFavs} />}
-                    </Col>
+                    </Row>
                 </Row>
-                <h2 className="yourProducts">Tus Productos</h2>
+                <Row md={{ span: 5, offset: 2 }}>
+                    <h1 className="favourite mt-5 mb-4">Favoritos</h1>
+
+                    {!favProducts ? <Loader /> : <ProductList classname products={favProducts} refreshProducts={getUserFavs} />}
+                </Row>
+                <h2 className="yourProducts mt-5 mb-4">Tus Productos</h2>
 
                 <div>
                     {!products ? <h1>Cargando productos</h1> : <ProductList products={products} refreshProducts={loadUserProducts} />}

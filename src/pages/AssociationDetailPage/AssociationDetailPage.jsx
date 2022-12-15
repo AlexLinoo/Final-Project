@@ -60,7 +60,7 @@ const AssociationDetailPage = () => {
 
 
 
-            <h1 className="mb-4">{name}</h1>
+            <h1 className="mb-5 asosName mt-3">{name}</h1>
 
             <Row>
 
@@ -94,7 +94,7 @@ const AssociationDetailPage = () => {
                     <img className="asosDetailImage" src={image} style={{ width: '100%' }} />
                 </Col>
                 <Col>
-                    <h1>Productos Donados</h1>
+                    <h1 className='mt-5 mb-4'>Productos Donados</h1>
 
                     {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getAssociation} />}
                 </Col>

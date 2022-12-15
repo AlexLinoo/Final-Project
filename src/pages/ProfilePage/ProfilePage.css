@@ -2,7 +2,8 @@
     background-color: white;
     border-color: white;
     color: rgba(170, 13, 13, 0.412);
-    font-size: 15px
+    font-size: 15px;
+    padding: 0px;
 }
 
 .delete:hover {
@@ -28,13 +29,29 @@
 
 .profileImage {
     border-radius: 50%;
-    width: 100%
+    width: 280px;
+    height: 280px;
+    margin-top: 30px;
 }
 
 .yourProfile {
     font-size: 50px;
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
 }
 
 .email {
     display: flex;
+}
+
+
+.infoCol {
+    margin-left: 200px;
+    margin-top: 150px;
+}
+
+.username {
+    margin-top: 30px;
+    margin-left: 40px;
 }

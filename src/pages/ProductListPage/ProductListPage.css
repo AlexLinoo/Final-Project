@@ -31,25 +31,3 @@
     margin-top: 35px;
     position: fixed;
 }
-
-.schoolButton:hover {
-    background-color: rgb(247, 173, 0);
-    color: white;
-    padding: 20px;
-    width: 200px;
-}
-
-.schoolButton {
-    background-color: rgba(247, 173, 0, 0.789);
-    color: rgb(124, 92, 17);
-    padding: 20px;
-    width: 200px;
-}
-
-.productTitle {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    font-size: 2.5em;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
