@@ -15,25 +15,13 @@ const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
 
-    const [donations, setDonations] = useState(null)
+
 
     const { association_id } = useParams()
 
     const [isLoading, setIsLoading] = useState(true)
 
-    const getDonations = () => {
-        productService
-            .getDonations()
-            .then(({ data }) => {
-                console.log(data)
-                const ids = data.donated.map(elm => elm)
-                setDonations(ids)
 
-
-
-            })
-            .catch(err => console.log(err))
-    }
 
     const getAssociation = (association_id) => {
         setIsLoading(true)
@@ -48,7 +36,7 @@ const AssociationDetailPage = () => {
     }
 
     useEffect(() => {
-        getDonations()
+
         getAssociation(association_id)
     }, [])
 
@@ -56,9 +44,9 @@ const AssociationDetailPage = () => {
         return (<Loader />)
     }
 
-    const { name, description, image, address, needs, children, owner } = association
+    const { name, description, image, address, needs, children, owner, donated } = association
 
-
+    const donations = donated.map(elm => elm)
 
     return (
 
@@ -96,7 +84,7 @@ const AssociationDetailPage = () => {
                 <Col>
                     <h1>Productos Donados</h1>
 
-                    {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getDonations} />}
+                    {!donations ? <Loader /> : <ProductList products={donations} refreshProducts={getAssociation} />}
                 </Col>
             </Row>
 

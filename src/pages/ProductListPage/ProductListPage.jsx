@@ -7,6 +7,13 @@ import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
 import './ProductListPage.css'
 import Loader from "../../components/Loader/Loader"
+import AddIcon from '@mui/icons-material/Add';
+import ToysIcon from '@mui/icons-material/Toys';
+import CheckroomIcon from '@mui/icons-material/Checkroom';
+import SchoolIcon from '@mui/icons-material/School';
+import CategoryIcon from '@mui/icons-material/Category';
+
+
 
 
 
@@ -68,16 +75,15 @@ const ProductListPage = () => {
         <>
 
             <Container>
-                <h1>Lista de productos</h1>
-                <br />
+
 
                 {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Producto</Button>}
                 <hr />
-                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary">Todos los Productos</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">Juguetes</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info">Ropa</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning">Material Escolar</Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark">Otros</Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryIcon /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success"><ToysIcon /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolIcon /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon /></Button>
 
                 {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 

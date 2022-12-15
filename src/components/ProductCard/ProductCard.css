@@ -1,14 +1,83 @@
-.ProductCard img {
-    height: 150px;
-    object-fit: cover;
-}
-
-.ProductCard {
-    box-shadow: 0px 0px 15px grey;
-    height: 550px;
-
-}
-
-.ProductCard:hover {
+.productCard:hover {
     transform: scale(1.05);
+}
+
+.like {
+
+    background-color: white;
+    border-color: white;
+    color: red;
+
+}
+
+.like:hover {
+
+    background-color: white;
+    border-color: white;
+    color: red;
+
+}
+
+.donated {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(14, 134, 66, 0.507);
+
+}
+
+.donated:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgb(14, 134, 66);
+
+}
+
+.details {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.388);
+
+}
+
+.details:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.613);
+
+}
+
+.delete {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(170, 13, 13, 0.412);
+
+}
+
+.delete:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(223, 13, 37, 0.836);
+
+}
+
+.edit {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(18, 17, 17, 0.412);
+
+}
+
+.edit:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(14, 14, 14, 0.836);
+
 }

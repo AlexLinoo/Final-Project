@@ -1,6 +1,6 @@
 import './ProductCard.css'
 import Button from 'react-bootstrap/Button'
-import Card from 'react-bootstrap/Card'
+/* import Card from 'react-bootstrap/Card' */
 import { Link } from 'react-router-dom'
 import productService from '../../services/Product.service'
 import { Modal } from 'react-bootstrap'
@@ -9,6 +9,18 @@ import { useState, useContext } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import { useEffect } from 'react'
 import associationService from '../../services/Association.service'
+import { Card, Grid, Row, Text } from "@nextui-org/react";
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+
+
+
+
+
 
 
 
@@ -109,8 +121,8 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
 
     return (
 
-        <div key={_id}>
-            <Card className="mb-4 ProductCard">
+        <div /* key={_id} */>
+            {/*       <Card className="mb-4 ProductCard">
                 <Card.Img variant="top" src={image} alt="producto" />
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
@@ -151,7 +163,61 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
                         </>
                     }
                 </Card.Body>
-            </Card>
+            </Card> */}
+            <Grid.Container gap={2} justify="flex-start">
+
+                <Grid key={_id}>
+                    <Card className='productCard' isPressable css={{ w: 330, h: 330 }}>
+                        <Card.Body css={{ p: 0 }}>
+                            <Card.Image
+                                src={image}
+                                objectFit="cover"
+                                width="100%"
+                                height={300}
+                                alt="product"
+                            />
+                            <Text b>{name}</Text>
+                        </Card.Body>
+                        <Card.Footer css={{ justifyItems: "flex-start" }}>
+                            <Row wrap="wrap" justify="space-between" align="center">
+                                <Link to={`/productos/detalles/${_id}`}>
+                                    <div>
+                                        <Button className='details' variant="dark" size="sm"><AddCircleIcon /></Button>
+                                    </div>
+                                </Link>
+                                {!userFavs.includes(product._id) ?
+
+                                    <div >
+                                        <Button className='like' variant="danger" size="sm" onClick={likeProduct}><FavoriteBorderIcon /></Button>
+                                    </div>
+                                    :
+                                    <div >
+                                        <Button className='like' variant="danger" size="sm" onClick={unLikeProduct}><FavoriteIcon /></Button>
+                                    </div>
+                                }
+                                {owner?._id === user?._id &&
+
+                                    <>
+                                        <div>
+                                            <Button className="delete" variant="danger" size="sm" onClick={deleteProduct}><DeleteForeverIcon /></Button>
+                                        </div>
+                                        {user && <Button className='edit' onClick={openModal} variant="dark" size="sm"><BorderColorIcon /></Button>}
+
+                                    </>
+                                }
+                                {isAsosOwner &&
+
+                                    <Button className='donated' variant="success" size="sm" onClick={apply}><VolunteerActivismIcon /></Button>
+                                }
+                            </Row>
+                        </Card.Footer>
+                    </Card>
+                </Grid>
+
+            </Grid.Container>
+
+
+
             <Modal show={showModal} onHide={closeModal}>
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
@@ -163,7 +229,17 @@ const ProductCard = ({ name, image, description, _id, type, state, owner, refres
             </Modal>
 
         </div>
+
+
     )
 }
 
 export default ProductCard
+
+
+
+
+
+
+
+
