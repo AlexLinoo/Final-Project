@@ -12,7 +12,15 @@ import ToysIcon from '@mui/icons-material/Toys';
 import CheckroomIcon from '@mui/icons-material/Checkroom';
 import SchoolIcon from '@mui/icons-material/School';
 import CategoryIcon from '@mui/icons-material/Category';
-
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import ToysOutlinedIcon from '@mui/icons-material/ToysOutlined';
+import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
 
 
 
@@ -75,18 +83,19 @@ const ProductListPage = () => {
 
             <Container>
 
-                {user && <Button onClick={openModal} variant="dark" size="lg">Donar</Button>}
-                <hr />
-                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryIcon /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success"><ToysIcon /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolIcon /></Button>
-                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon /></Button>
+
+
+                <Button className="filterButton" onClick={handleFilterButton} value='all' variant="outline-secondary"><CategoryOutlinedIcon sx={{ fontSize: 70 }} /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Juguetes' variant="outline-success">< ToysOutlinedIcon sx={{ fontSize: 70 }} /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Ropa' variant="outline-info"><CheckroomIcon sx={{ fontSize: 70 }} /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Material Escolar' variant="outline-warning"><SchoolOutlinedIcon sx={{ fontSize: 70 }} /></Button>
+                <Button className="filterButton" onClick={handleFilterButton} value='Otros' variant="outline-dark"><AddIcon sx={{ fontSize: 70 }} /></Button>
 
                 {!products ? <Loader /> : <ProductList products={filteredProducts} refreshProducts={loadProducts} />}
 
-
-
+                <div className='instructions'>
+                    <p>Descubre<AddCircleIcon /> Likea <FavoriteIcon /> Dona <VolunteerActivismIcon /></p>
+                </div>
             </Container>
 
 

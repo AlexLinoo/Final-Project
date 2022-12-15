@@ -3,4 +3,66 @@
     margin-bottom: 30px;
     padding: 20px;
     width: 15%;
+    background-color: white;
+    border-color: white;
+    color: rgba(67, 64, 68, 0.388);
 }
+
+.filterButton:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(58, 54, 58, 0.613);
+
+}
+
+.instructions {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    color: grey;
+
+
+}
+
+.schoolButton:hover {
+    background-color: rgb(247, 173, 0);
+    color: white;
+    padding: 20px;
+    width: 200px;
+}
+
+.schoolButton {
+    background-color: rgba(247, 173, 0, 0.789);
+    color: rgb(124, 92, 17);
+    padding: 20px;
+    width: 200px;
+}
+
+/* .allButton:hover {
+    background-color: rgb(83, 81, 77);
+    color: white;
+    padding: 20px;
+    width: 200px;
+}
+
+.allButton {
+    background-color: rgba(49, 48, 47, 0.789);
+    color: rgb(21, 21, 20);
+    padding: 20px;
+    width: 200px;
+}
+
+.toys:hover {
+    background-color: rgb(56, 174, 6);
+    color: white;
+    padding: 20px;
+    width: 200px;
+}
+
+.toys {
+    background-color: rgba(49, 48, 47, 0.789);
+    color: rgb(21, 21, 20);
+    padding: 20px;
+    width: 200px;
+} */

@@ -6,6 +6,7 @@ import NewAssociationForm from "../../components/NewAssociationForm/NewAssociati
 import { MessageContext } from "../../contexts/userMessage.context"
 import { AuthContext } from "../../contexts/auth.context"
 import Loader from "../../components/Loader/Loader"
+import './AssociationListPage.css'
 
 
 
@@ -45,14 +46,16 @@ const AssociationListPage = () => {
 
         <>
             <Container>
-                <h1>Lista de Asociaciones</h1>
+                <div className="display">
+                    <h1>Asociaciones</h1>
+                    {user && <Button className='buttonCenter' onClick={openModal} variant="dark" size="sm">Crear Nuevo Centro</Button>}
+                </div>
                 <br />
 
-                {user && <Button onClick={openModal} variant="dark" size="sm">Crear Nuevo Centro</Button>}
 
-                <hr />
 
                 {!associations ? <Loader /> : <AssociationList associations={associations} refreshAssociations={loadAssociations} />}
+
             </Container>
 
             <Modal show={showModal} onHide={closeModal}>
@@ -68,3 +71,7 @@ const AssociationListPage = () => {
 }
 
 export default AssociationListPage
+
+
+
+

@@ -7,9 +7,6 @@ import Loader from "../../components/Loader/Loader"
 import ProductList from "../../components/ProductList/ProductList"
 
 
-
-
-
 const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
@@ -74,7 +71,6 @@ const AssociationDetailPage = () => {
                     {needs.juguetes && <Card.Text>juguetes</Card.Text>}
                     {needs.material_escolar && <Card.Text>material escolar</Card.Text>}
                     {needs.otros && <Card.Text>otros</Card.Text>}
-                    {/* <p> donaciones: {donated.map(elm => elm.name)}</p> */}
                     <p>Niños: {children}</p>
                     <p>Dirección: {address}</p>
                     <hr />
@@ -100,3 +96,8 @@ const AssociationDetailPage = () => {
 }
 
 export default AssociationDetailPage
+
+
+
+
+

@@ -26,8 +26,8 @@ const UserCard = ({ username, profileImage, _id }) => {
                     <Card.Title>{username}</Card.Title>
 
                     <Link to={`/usuarios/perfil/${_id}`}>
-                        <div className="">
-                            <Button variant="dark" size="sm"><AddCircleIcon /></Button>
+                        <div className="button">
+                            <Button className='userButton' variant="dark" size="sm"><AddCircleIcon /></Button>
                         </div>
                     </Link>
                 </Card.Body>

@@ -6,3 +6,25 @@
     height: 150px;
     object-fit: cover;
 }
+
+.userButton {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.388);
+
+
+}
+
+.userButton:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.613);
+
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+}
