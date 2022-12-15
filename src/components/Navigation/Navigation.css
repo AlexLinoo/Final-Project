@@ -5,3 +5,51 @@ a {
 .welcome {
     margin-left: 525px;
 }
+
+.like {
+
+    background-color: white;
+    border-color: white;
+    color: red;
+
+}
+
+.like:hover {
+
+    background-color: white;
+    border-color: white;
+    color: red;
+
+}
+
+.donated {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(14, 134, 66, 0.507);
+
+}
+
+.donated:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgb(14, 134, 66);
+
+}
+
+.details {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.507);
+
+}
+
+.details:hover {
+
+    background-color: white;
+    border-color: white;
+    color: rgba(80, 11, 91, 0.507);
+
+}

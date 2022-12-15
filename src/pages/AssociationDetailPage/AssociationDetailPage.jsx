@@ -14,9 +14,13 @@ const AssociationDetailPage = () => {
 
     const [association, setAssociation] = useState(null)
 
+
+
     const { association_id } = useParams()
 
     const [isLoading, setIsLoading] = useState(true)
+
+
 
     const getAssociation = (association_id) => {
 
@@ -45,9 +49,13 @@ const AssociationDetailPage = () => {
     }
 
     const { name, description, image, address, needs, children, owner, donated } = association
+<<<<<<< HEAD
 
     const donations = donated.map(elm => elm)
+=======
+>>>>>>> miguel
 
+    const donations = donated.map(elm => elm)
 
     return (
 

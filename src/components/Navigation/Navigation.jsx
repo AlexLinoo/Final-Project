@@ -6,6 +6,10 @@ import { AuthContext } from '../../contexts/auth.context'
 import { useContext } from 'react'
 
 
+
+
+
+
 const Navigation = () => {
 
     const { user, logoutUser } = useContext(AuthContext)
@@ -57,6 +61,7 @@ const Navigation = () => {
                 </Navbar.Collapse>
             </Container>
         </Navbar>
+
     )
 }
 
